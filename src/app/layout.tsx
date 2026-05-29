@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP, Zen_Maru_Gothic } from "next/font/google";
+import { Noto_Sans_JP, Noto_Serif_JP, Zen_Maru_Gothic, Lora } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -22,6 +22,13 @@ const zenMaruGothic = Zen_Maru_Gothic({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
   variable: "--font-zen-maru-gothic",
+  display: "swap",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-lora",
   display: "swap",
 });
 
@@ -48,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${zenMaruGothic.variable}`}
+      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${zenMaruGothic.variable} ${lora.variable}`}
     >
       <body className="font-[var(--font-noto-sans-jp)] antialiased text-[#231F20] min-h-screen flex flex-col">
         {/* ── 水彩固定背景 ── */}

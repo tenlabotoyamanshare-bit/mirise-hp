@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
+import { WhyMiraise } from "@/components/sections/WhyMiraise";
 
 export const metadata: Metadata = {
   title: "訪問看護ステーションミライズ | 富山の精神・療育専門訪問看護",
@@ -10,7 +12,7 @@ export const metadata: Metadata = {
 
 function SectionLabel({ children, color = "#EC99D0" }: { children: React.ReactNode; color?: string }) {
   return (
-    <p className="text-xs font-bold tracking-widest mb-3" style={{ color }}>
+    <p className="text-sm font-bold tracking-widest mb-3" style={{ color }}>
       {children}
     </p>
   );
@@ -25,7 +27,7 @@ function SectionTitle({
 }) {
   return (
     <h2
-      className="font-[var(--font-noto-serif-jp)] text-3xl font-light mb-4"
+      className="text-4xl font-bold mb-5"
       style={{ color: light ? "#fff" : "#231F20" }}
     >
       {children}
@@ -175,84 +177,88 @@ export default function HomePage() {
       <div className="space-y-3 pb-3">
 
         {/* ── WHAT WE CAN DO ── */}
-        <section id="what-we-can-do" className="py-24 px-[5%] bg-white">
+        <section id="what-we-can-do" className="py-24 px-[5%] bg-white/60">
           <div className="max-w-[1100px] mx-auto">
             <FadeIn direction="up">
               <SectionLabel>WHAT WE CAN DO</SectionLabel>
-              <SectionTitle>訪問看護でできること</SectionTitle>
-              <p className="text-sm text-[#6b6b6b] leading-loose mb-14 max-w-2xl">
+              <h2
+                className="text-4xl font-bold mb-5 text-[#231F20]"
+                style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+              >
+                訪問看護でできること
+              </h2>
+              <p className="text-base text-[#6b6b6b] leading-loose mb-14 max-w-2xl">
                 通所不要。自宅で受けられる、精神・知的に特化した専門的なケア。
                 <br />
                 困りごとを解決するだけでなく、その人らしい強みを一緒に伸ばします。
               </p>
             </FadeIn>
 
-            {/* 困りごとを解決する */}
-            <FadeIn delay={0.05} direction="up">
-              <p className="text-xs font-bold tracking-widest text-[#EC99D0] mb-5">困りごとを解決する</p>
-            </FadeIn>
             <StaggerContainer
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16"
+              className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5"
               staggerDelay={0.08}
             >
               {[
                 {
                   title: "在宅でケアが受けられる",
-                  desc: "通所不要。自宅に看護師が訪問します。週最大3回まで対応でき、お子さんが慣れた環境でケアを受けられます。",
+                  desc: "通所不要。自宅に看護師が訪問し、週最大3回まで対応。慣れた環境で専門的なケアを受けられます。",
+                  bg: "#fce8f4",
                 },
                 {
-                  title: "医療的ケア",
-                  desc: "薬の管理・血糖値・血圧のコントロールなど、医療的な観点から専門的にサポートします。精神科での処方薬の服薬管理も対応します。",
+                  title: "医療的ケア・服薬管理",
+                  desc: "薬の管理・血糖値のコントロールなど医療的にサポート。精神科の処方薬の服薬管理も対応します。",
+                  bg: "#fce8f4",
                 },
                 {
-                  title: "衝動・癇癪の原因を一緒に探る",
-                  desc: "突発的なイライラや衝動には、必ず原因があります。食事・睡眠・ストレスなど、内的・外的な要因を看護師が一緒に考えて対処します。",
+                  title: "気持ちの安定をサポート",
+                  desc: "イライラや衝動には必ず原因があります。食事・睡眠・ストレスなどの観点から看護師が一緒に考えて対処します。",
+                  bg: "#ebe9f7",
                 },
                 {
-                  title: "親御さん自身のメンタルケア",
-                  desc: "子どものケアをしながら、疲れやストレスを抱えている親御さんの話をじっくり聞きます。話すだけで気持ちが楽になる場所でありたいと思っています。",
+                  title: "親御さん・ご家族のサポート",
+                  desc: "子どものケアをしながら疲れを抱える親御さんの話をじっくり聞きます。話すだけで楽になる場所を目指しています。",
+                  bg: "#ebe9f7",
                 },
                 {
-                  title: "就労・社会参加への支援（成人）",
-                  desc: "職場の人間関係、仕事上の苦手なこと。就労を継続できるよう、悩みに一緒に向き合いながらサポートします。",
+                  title: "就労・社会参加への支援",
+                  desc: "職場での悩みや苦手なことへの対処法を一緒に考え、就労継続をサポートします（成人の方向け）。",
+                  bg: "#e0f3fd",
                 },
                 {
-                  title: "生活のルーティーンをつくる",
-                  desc: "看護師が訪問する「決まった時間」が生まれることで、身支度を整えよう、部屋をきれいにしようという気持ちが育ちます。ケアがメンタルの安定につながります。",
+                  title: "「できた！」を一緒に積み重ねる",
+                  desc: "好きなこと・得意なことを見つけ、小さな成功体験を積み重ねます。「できた」の実感が自信となり次のステップへとつながります。",
+                  bg: "#e2f6ef",
                 },
               ].map((item) => (
                 <StaggerItem key={item.title}>
-                  <div className="bg-[#fafafa] rounded-2xl p-6 h-full border-l-4 border-[#EC99D0]">
-                    <p className="font-bold text-sm text-[#231F20] mb-2">{item.title}</p>
-                    <p className="text-xs text-[#6b6b6b] leading-relaxed">{item.desc}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                  {/* 正方形・ベタ塗り。通常:タイトル中央、ホバー:タイトル同サイズ+説明 */}
+                  <div
+                    className="group relative rounded-3xl overflow-hidden aspect-square shadow-sm hover:shadow-md transition-shadow duration-300 cursor-default"
+                    style={{ backgroundColor: item.bg }}
+                    tabIndex={0}
+                  >
+                    {/* 通常状態：タイトルのみ中央 */}
+                    <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-8 transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0">
+                      <p
+                        className="text-sm sm:text-2xl font-bold text-center text-[#231F20] leading-relaxed"
+                        style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+                      >
+                        {item.title}
+                      </p>
+                    </div>
 
-            {/* 強みを伸ばす */}
-            <FadeIn delay={0.05} direction="up">
-              <p className="text-xs font-bold tracking-widest text-[#84D3F4] mb-5">強みを伸ばす</p>
-            </FadeIn>
-            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4" staggerDelay={0.1}>
-              {[
-                {
-                  title: "得意なことを見つける",
-                  desc: "できないことに目を向けるだけでなく、その人が持つ好きなことや得意なことを一緒に探します。",
-                },
-                {
-                  title: "「できた！」を積み重ねる",
-                  desc: "小さな成功体験を大切に。「できた」という実感が自信となり、次へのステップへとつながっていきます。",
-                },
-                {
-                  title: "乳幼児から成人まで、ずっと寄り添う",
-                  desc: "ミライズの名前には「未来を一緒に描いて歩んでいく」という想いが込められています。乳幼児のころから成人になっても、その人の無限大の可能性を一緒に広げていきます。",
-                },
-              ].map((item) => (
-                <StaggerItem key={item.title}>
-                  <div className="bg-[#f0f8fd] rounded-2xl p-6 h-full border-l-4 border-[#84D3F4]">
-                    <p className="font-bold text-sm text-[#231F20] mb-2">{item.title}</p>
-                    <p className="text-xs text-[#6b6b6b] leading-relaxed">{item.desc}</p>
+                    {/* ホバー状態：タイトル同サイズ＋説明文 */}
+                    <div className="absolute inset-0 flex flex-col justify-center gap-2 sm:gap-5 p-4 sm:p-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+                      <p
+                        className="text-sm sm:text-2xl font-bold text-[#231F20] leading-snug"
+                        style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+                      >
+                        {item.title}
+                      </p>
+                      <p className="text-[11px] sm:text-lg text-[#555] leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
                 </StaggerItem>
               ))}
@@ -262,304 +268,433 @@ export default function HomePage() {
 
 
         {/* ── YOUR WORRIES ── */}
-        <section id="worries" className="py-24 px-[5%]" style={{ backgroundColor: "#fef6fa" }}>
+        <section
+          id="worries"
+          className="py-24 px-[5%] relative overflow-hidden"
+          style={{
+            background: "linear-gradient(to bottom, rgba(255,252,210,0.62) 0%, rgba(255,252,210,0.62) 70%, rgba(255,252,210,0) 100%)",
+          }}
+        >
+
           <div className="max-w-[1100px] mx-auto">
             <FadeIn direction="up">
-              <SectionLabel>YOUR WORRIES</SectionLabel>
-              <SectionTitle>こんなお悩みありませんか？</SectionTitle>
-              <p className="text-sm text-[#6b6b6b] leading-loose mb-12 max-w-2xl">
-                「どこに相談すればいいかわからない」
-                <br />
-                「富山には専門に診てくれるところがない」
-                <br />
-                そんな声をよく聞きます。ミライズは、そのお悩みに向き合うために生まれました。
-              </p>
-            </FadeIn>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-              <FadeIn direction="up" delay={0.1}>
-                <div className="bg-white rounded-2xl p-8 h-full">
-                  <p className="text-xs font-bold tracking-widest text-[#EC99D0] mb-6">
-                    お子さん・親御さんのお悩み
-                  </p>
-                  <ul className="space-y-3">
-                    {[
-                      "療育施設に申し込んだけど、順番待ちでいつ入れるかわからない",
-                      "小学校に上がったら、今まで通えていた療育施設が使えなくなった",
-                      "子どもが突発的に暴れたり、衝動的になったりしたとき、どう対処すればいいかわからない",
-                      "子どものケアに限界を感じている。誰かに丸ごと相談したい",
-                      "富山では精神・知的に特化した訪問看護をしているところがほとんどない",
-                      "訪問看護で療育が受けられることを知らなかった",
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-[#4a4a4a] leading-relaxed">
-                        <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#EC99D0]" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+              {/* タイトルエリア：ダイヤモンド装飾はここの中だけ */}
+              <div className="relative overflow-hidden text-center py-10 mb-4">
+                {/* ── ダイヤモンド背景装飾（文字と同程度のサイズ） ── */}
+                {[
+                  { size: 54,  x: -187, color: "rgba(236,153,208,0.32)" },
+                  { size: 84,  x: -120, color: "rgba(236,153,208,0.24)" },
+                  { size: 114, x:  -60, color: "rgba(179,174,219,0.22)" },
+                  { size: 135, x:    0, color: "rgba(179,174,219,0.18)" },
+                  { size: 114, x:   60, color: "rgba(132,211,244,0.22)" },
+                  { size: 84,  x:  120, color: "rgba(132,211,244,0.24)" },
+                  { size: 54,  x:  187, color: "rgba(158,221,201,0.32)" },
+                ].map((d, i) => (
+                  <div
+                    key={i}
+                    className="pointer-events-none select-none"
+                    style={{
+                      position: "absolute",
+                      width: d.size,
+                      height: d.size,
+                      left: `calc(50% + ${d.x - d.size / 2}px)`,
+                      top: "50%",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      backgroundColor: d.color,
+                      borderRadius: "4px",
+                    }}
+                  />
+                ))}
+                {/* タイトル（ダイヤモンドの前面） */}
+                <div className="relative z-10">
+                  <h2
+                    className="text-4xl font-bold mb-5 text-[#231F20]"
+                    style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+                  >
+                    こんなお悩みありませんか？
+                  </h2>
                 </div>
-              </FadeIn>
+              </div>
 
-              <FadeIn direction="up" delay={0.2}>
-                <div className="bg-white rounded-2xl p-8 h-full">
-                  <p className="text-xs font-bold tracking-widest text-[#B3AEDB] mb-6">
-                    成人の方・ご家族のお悩み
-                  </p>
-                  <ul className="space-y-3">
-                    {[
-                      "入院を繰り返していて、なかなか安定した生活が送れない",
-                      "メンタルの問題で仕事が長続きしない",
-                      "職場の人間関係や、仕事の中で苦手なことがあって悩んでいる",
-                      "イライラや衝動の原因がわからず、対処の仕方がわからない",
-                      "相談員さんや支援者として、利用者のために専門的なケアにつなげたい",
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-[#4a4a4a] leading-relaxed">
-                        <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#B3AEDB]" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+              {/* スクロール促進アニメーション ↓ */}
+              <div className="flex justify-center mb-10">
+                <div className="animate-bounce opacity-50" style={{ color: "#B3AEDB" }}>
+                  <svg width="80" height="44" viewBox="0 0 80 44" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="4 6 40 24 76 6" />
+                    <polyline points="4 22 40 40 76 22" />
+                  </svg>
                 </div>
-              </FadeIn>
-            </div>
-
-            <FadeIn direction="up" delay={0.3}>
-              <div className="text-center">
-                <p className="text-sm font-bold text-[#231F20] mb-6">
-                  そのお悩み、訪問看護で解決できるかもしれません。
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-block px-8 py-4 rounded-full text-white font-bold text-sm transition-transform hover:-translate-y-0.5"
-                  style={{
-                    background: "linear-gradient(120deg, #EC99D0, #B3AEDB)",
-                    boxShadow: "0 6px 24px rgba(236,153,208,0.35)",
-                  }}
-                >
-                  まずはお気軽にご相談ください
-                </Link>
               </div>
             </FadeIn>
-          </div>
-        </section>
 
+            {/*
+              グリッドを8アイテムに分割：同じ行は自動で同じ高さになるため
+              「訪問看護でできること」の区切りが左右で必ず揃う
+              モバイル(1列)：ソース順 = ヘッダー1→お悩み1→区切り1→解決策1→ヘッダー2…
+              デスクトップ(2列)：md:col-start / md:row-start で配置
+            */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-0">
 
-        {/* ── OUR SERVICES ── */}
-        <section className="py-24 px-[5%] bg-white">
-          <div className="max-w-[1100px] mx-auto">
-            <FadeIn direction="up">
-              <SectionLabel>OUR SERVICES</SectionLabel>
-              <SectionTitle>対象者別のサービス</SectionTitle>
-              <p className="text-sm text-[#6b6b6b] leading-loose mb-12 max-w-2xl">
-                ミライズは、乳幼児から成人まで、精神・知的障害のある方とそのご家族を幅広くサポートします。
-              </p>
-            </FadeIn>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* 乳幼児・小児 */}
-              <FadeIn direction="up" delay={0.1}>
-                <div className="rounded-2xl border border-[#f0d0e8] p-8 h-full">
-                  <div
-                    className="w-full h-1 rounded-full mb-6"
-                    style={{ background: "linear-gradient(90deg, #EC99D0, #B3AEDB)" }}
-                  />
-                  <p className="font-[var(--font-noto-serif-jp)] text-xl font-light text-[#231F20] mb-1">
-                    乳幼児・小児
+              {/* ━━ 行1：ヘッダー ━━ */}
+              <FadeIn direction="up" delay={0.1} className="md:col-start-1 md:row-start-1">
+                <div className="rounded-t-3xl px-8 py-6" style={{ background: "linear-gradient(135deg, #EC99D0, #F1C6E7)" }}>
+                  <p className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+                    お子さん・親御さん
                   </p>
-                  <p className="text-xs text-[#9b9b9b] mb-6">未就学児〜高校生</p>
-
-                  <p className="text-xs font-bold text-[#EC99D0] mb-2">対象となる方</p>
-                  <p className="text-sm text-[#4a4a4a] leading-relaxed mb-6">
-                    発達障害・知的障害・精神的なケアが必要なお子さんと、そのご家族。
-                  </p>
-
-                  <p className="text-xs font-bold text-[#EC99D0] mb-3">こんなことができます</p>
-                  <ul className="space-y-2 mb-6">
-                    {[
-                      "自宅への訪問看護で、通所が難しいお子さんにも専門的なサポートを提供",
-                      "突発的な衝動・癇癪の原因を一緒に探り、対処法を考える",
-                      "日常生活の動作（着替え・食事など）の練習や、自主性を育む支援",
-                      "親御さんの不安や疲れに寄り添うメンタルサポート",
-                      "学校・他の支援機関との連携",
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-[#4a4a4a] leading-relaxed">
-                        <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#EC99D0]" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="bg-[#fef6fa] rounded-xl p-4 text-xs text-[#6b6b6b] leading-relaxed">
-                    療育施設が満員で断られた、小学校に上がってケアが途切れてしまった。そんな状況でも、訪問看護という選択肢があります。丸ごと頼っていただいて大丈夫です。
-                  </div>
+                  <p className="text-sm text-white/80 mt-1">未就学児〜高校生・ご家族</p>
                 </div>
               </FadeIn>
 
-              {/* 成人 */}
-              <FadeIn direction="up" delay={0.2}>
-                <div className="rounded-2xl border border-[#d8d5f0] p-8 h-full">
-                  <div
-                    className="w-full h-1 rounded-full mb-6"
-                    style={{ background: "linear-gradient(90deg, #B3AEDB, #84D3F4)" }}
-                  />
-                  <p className="font-[var(--font-noto-serif-jp)] text-xl font-light text-[#231F20] mb-1">
-                    成人の方
+              <FadeIn direction="up" delay={0.2} className="md:col-start-2 md:row-start-1 mt-6 md:mt-0">
+                <div className="rounded-t-3xl px-8 py-6" style={{ background: "linear-gradient(135deg, #B3AEDB, #C8C4E8)" }}>
+                  <p className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+                    成人の方・ご家族
                   </p>
-                  <p className="text-xs text-[#9b9b9b] mb-6">精神障害・知的障害・発達障害のある成人の方</p>
-
-                  <p className="text-xs font-bold text-[#B3AEDB] mb-2">対象となる方</p>
-                  <p className="text-sm text-[#4a4a4a] leading-relaxed mb-6">
-                    精神障害・知的障害・発達障害のある成人の方と、そのご家族・支援者。
-                  </p>
-
-                  <p className="text-xs font-bold text-[#B3AEDB] mb-3">こんなことができます</p>
-                  <ul className="space-y-2 mb-6">
-                    {[
-                      "服薬管理・血糖値コントロールなど医療的なサポート",
-                      "就労継続のための悩み相談・メンタルサポート",
-                      "職場の人間関係や苦手なことへの対処法を一緒に考える",
-                      "イライラや衝動の原因を探り、セルフコントロールをサポート",
-                      "入院を繰り返さないための生活支援・定期的な関わり",
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-[#4a4a4a] leading-relaxed">
-                        <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#B3AEDB]" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="bg-[#f5f4fc] rounded-xl p-4 text-xs text-[#6b6b6b] leading-relaxed">
-                    「また入院してしまった」「仕事が続かない」。そんな繰り返しを断ち切るために、定期的に自宅に訪問する看護師がいることが大きな力になります。
-                  </div>
+                  <p className="text-sm text-white/80 mt-1">精神・知的・発達障害のある方</p>
                 </div>
               </FadeIn>
+
+              {/* ━━ 行2：お悩みリスト（高さが揃う） ━━ */}
+              <div className="md:col-start-1 md:row-start-2 px-8 py-6 bg-white/85">
+                <p className="text-sm font-bold tracking-widest text-[#EC99D0] mb-4">こんなお悩みは？</p>
+                <ul className="space-y-3">
+                  {[
+                    "療育施設に申し込んだけど、順番待ちでいつ入れるかわからない",
+                    "小学校に上がったら、今まで通えていた療育施設が使えなくなった",
+                    "子どもが突発的に暴れたり衝動的になったとき、どう対処すればいいかわからない",
+                    "子どものケアに限界を感じている。誰かに丸ごと相談したい",
+                    "富山では精神・知的に特化した訪問看護をしているところがほとんどない",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-base text-[#4a4a4a] leading-relaxed">
+                      <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#EC99D0]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="md:col-start-2 md:row-start-2 px-8 py-6 bg-white/85">
+                <p className="text-sm font-bold tracking-widest text-[#B3AEDB] mb-4">こんなお悩みは？</p>
+                <ul className="space-y-3">
+                  {[
+                    "入院を繰り返していて、なかなか安定した生活が送れない",
+                    "メンタルの問題で仕事が長続きしない",
+                    "職場の人間関係や、仕事の中で苦手なことがあって悩んでいる",
+                    "イライラや衝動の原因がわからず、対処の仕方がわからない",
+                    "相談員・支援者として、利用者のために専門的なケアにつなげたい",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-base text-[#4a4a4a] leading-relaxed">
+                      <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#B3AEDB]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ━━ 行3：区切り（必ず揃う） ━━ */}
+              <div
+                className="md:col-start-1 md:row-start-3 flex items-center gap-3 px-8 py-4"
+                style={{ background: "rgba(236,153,208,0.18)" }}
+              >
+                <div className="h-px flex-1" style={{ background: "rgba(236,153,208,0.5)" }} />
+                <p className="text-sm font-bold whitespace-nowrap" style={{ color: "#c96fa0" }}>訪問看護でできること</p>
+                <div className="h-px flex-1" style={{ background: "rgba(236,153,208,0.5)" }} />
+              </div>
+
+              <div
+                className="md:col-start-2 md:row-start-3 flex items-center gap-3 px-8 py-4"
+                style={{ background: "rgba(175,155,235,0.15)" }}
+              >
+                <div className="h-px flex-1" style={{ background: "rgba(175,155,235,0.5)" }} />
+                <p className="text-sm font-bold whitespace-nowrap" style={{ color: "#8a84c4" }}>訪問看護でできること</p>
+                <div className="h-px flex-1" style={{ background: "rgba(179,174,219,0.5)" }} />
+              </div>
+
+              {/* ━━ 行4：解決策リスト ━━ */}
+              <div className="md:col-start-1 md:row-start-4 rounded-b-3xl px-8 py-6 bg-white/85">
+                <ul className="space-y-3 mb-5">
+                  {[
+                    "自宅への訪問看護で、通所が難しいお子さんにも専門的なサポートを提供",
+                    "突発的な衝動・癇癪の原因を一緒に探り、対処法を考える",
+                    "日常生活の動作（着替え・食事など）の練習や、自主性を育む支援",
+                    "親御さんの不安や疲れに寄り添うメンタルサポート",
+                    "学校・他の支援機関との連携",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-base text-[#4a4a4a] leading-relaxed">
+                      <span className="mt-1 flex-shrink-0 font-bold text-lg leading-none text-[#EC99D0]">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="rounded-xl p-4 text-sm text-[#6b6b6b] leading-relaxed" style={{ background: "rgba(252,232,244,0.7)" }}>
+                  療育施設が満員で断られた、小学校に上がってケアが途切れてしまった。そんな状況でも、訪問看護という選択肢があります。丸ごと頼っていただいて大丈夫です。
+                </div>
+              </div>
+
+              <div className="md:col-start-2 md:row-start-4 rounded-b-3xl px-8 py-6 bg-white/85">
+                <ul className="space-y-3 mb-5">
+                  {[
+                    "服薬管理・血糖値コントロールなど医療的なサポート",
+                    "就労継続のための悩み相談・メンタルサポート",
+                    "職場の人間関係や苦手なことへの対処法を一緒に考える",
+                    "イライラや衝動の原因を探り、セルフコントロールをサポート",
+                    "入院を繰り返さないための生活支援・定期的な関わり",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-base text-[#4a4a4a] leading-relaxed">
+                      <span className="mt-1 flex-shrink-0 font-bold text-lg leading-none text-[#B3AEDB]">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="rounded-xl p-4 text-sm text-[#6b6b6b] leading-relaxed" style={{ background: "rgba(220,205,255,0.45)" }}>
+                  「また入院してしまった」「仕事が続かない」。そんな繰り返しを断ち切るために、定期的に自宅に訪問する看護師がいることが大きな力になります。
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
 
 
-        {/* ── VOICES ── */}
-        <section className="py-24 px-[5%]" style={{ backgroundColor: "#f5f4fc" }}>
+        {/* ── VOICES（白背景あり：タイトル〜変化カードまで） ── */}
+        <section className="py-20 px-[5%] bg-white/60">
           <div className="max-w-[1100px] mx-auto">
+
+            {/* ① タイトル＆説明 */}
             <FadeIn direction="up">
-              <SectionLabel color="#B3AEDB">VOICES</SectionLabel>
-              <SectionTitle>保護者・ご利用者の声</SectionTitle>
-              <p className="text-sm text-[#6b6b6b] leading-loose mb-12 max-w-2xl">
-                実際にミライズを利用されている方から、いただいた声をご紹介します。
-                <br />
-                <span className="text-xs text-[#9b9b9b]">
-                  ※ プライバシー保護のため、一部内容を変更しています。
-                </span>
-              </p>
+              <div className="text-center mb-14">
+                <h2
+                  className="text-4xl font-bold mb-4"
+                  style={{
+                    color: "#3d9e8c",
+                    fontFamily: "var(--font-zen-maru-gothic)",
+                    textShadow: "3px 3px 0 rgba(0,0,0,0.18)",
+                  }}
+                >
+                  保護者の声とアンケート結果
+                </h2>
+                <p className="text-sm text-[#6b6b6b] leading-relaxed">
+                  利用開始から2か月以上が経過した保護者36名を対象に実施したアンケートと、実際にいただいた口コミをご紹介します。
+                </p>
+              </div>
             </FadeIn>
 
-            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5" staggerDelay={0.1}>
+            {/* ② 4つの統計 */}
+            <StaggerContainer
+              className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-32"
+              staggerDelay={0.1}
+            >
               {[
-                {
-                  quote:
-                    "療育施設に断られ続けて途方に暮れていたとき、訪問看護という選択肢を教えてもらいました。自宅に来てもらえるので、子どもも安心してケアを受けられています。",
-                  attr: "お子さん 8歳 / 利用開始から4ヶ月",
-                  accent: "#EC99D0",
-                },
-                {
-                  quote:
-                    "突発的に暴れてしまうとき、どう対処すればいいかずっとわからなかった。看護師さんと一緒に原因を考えるうちに、血糖値や睡眠との関係がわかって、対処できるようになってきました。",
-                  attr: "お子さん 11歳 / 利用開始から6ヶ月",
-                  accent: "#EC99D0",
-                },
-                {
-                  quote:
-                    "仕事がなかなか続かなくて悩んでいました。看護師さんが定期的に来てくれることで、生活のリズムができて、気持ちも安定してきた気がします。",
-                  attr: "20代 / 利用開始から3ヶ月",
-                  accent: "#B3AEDB",
-                },
-                {
-                  quote:
-                    "入院を繰り返していたのが、訪問看護を始めてから落ち着いてきました。薬の管理もサポートしてもらえて、家族としても安心しています。",
-                  attr: "ご家族より / 利用開始から8ヶ月",
-                  accent: "#B3AEDB",
-                },
-              ].map((v) => (
-                <StaggerItem key={v.attr}>
-                  <div
-                    className="bg-white rounded-2xl p-7 h-full"
-                    style={{ borderLeft: `4px solid ${v.accent}` }}
-                  >
-                    <p className="text-sm text-[#4a4a4a] leading-relaxed mb-4">
-                      「{v.quote}」
-                    </p>
-                    <p className="text-xs text-[#9b9b9b]">— {v.attr}</p>
+                { value: "94", label: "子どもの成長を\n感じられた" },
+                { value: "92", label: "相談できる場所がある\nと感じた" },
+                { value: "89", label: "家族の安心に\nつながった" },
+                { value: "96", label: "継続利用率\n（直近6か月）" },
+              ].map((stat) => (
+                <StaggerItem key={stat.value}>
+                  <div className="flex flex-col items-center gap-0">
+                    {/* ローレル＋数字 */}
+                    <div className="relative flex items-center justify-center" style={{ width: 240, height: 240 }}>
+                      <Image
+                        src="/laurel.png"
+                        alt=""
+                        width={240}
+                        height={240}
+                        className="absolute inset-0 w-full h-full object-contain"
+                      />
+                      {/* 数値 */}
+                      <div className="relative z-10 flex items-end gap-0.5 pb-3">
+                        <span
+                          className="text-7xl font-bold leading-none"
+                          style={{
+                            color: "#3d9e8c",
+                            fontFamily: "var(--font-lora)",
+                            textShadow: "3px 3px 0 rgba(0,0,0,0.28)",
+                          }}
+                        >
+                          {stat.value}
+                        </span>
+                        <span
+                          className="text-xl font-bold leading-none mb-1"
+                          style={{
+                            color: "#3d9e8c",
+                            fontFamily: "var(--font-lora)",
+                            textShadow: "3px 3px 0 rgba(0,0,0,0.28)",
+                          }}
+                        >
+                          %
+                        </span>
+                      </div>
+                    </div>
+                    {/* 吹き出しラベル（上向き三角＋角丸ボックス） */}
+                    <div className="flex flex-col items-center mt-[-20px]">
+                      <div style={{
+                        width: 0, height: 0,
+                        borderLeft: "9px solid transparent",
+                        borderRight: "9px solid transparent",
+                        borderBottom: "10px solid #e8e8e8",
+                      }} />
+                      <div className="bg-[#e8e8e8] rounded-2xl px-5 py-2.5 text-center text-sm text-[#555] leading-snug whitespace-pre-line">
+                        {stat.label}
+                      </div>
+                    </div>
                   </div>
                 </StaggerItem>
               ))}
             </StaggerContainer>
+
+            {/* ③ 利用後の変化カード */}
+            <FadeIn direction="up">
+              <h3
+                className="text-center text-3xl font-bold mb-14"
+                style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#4A3068" }}
+              >
+                利用後に感じた変化（保護者の声）
+              </h3>
+            </FadeIn>
+
+            <StaggerContainer
+              className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8"
+              staggerDelay={0.1}
+            >
+              {[
+                {
+                  title: "お子様の変化",
+                  items: ["気持ちが安定してきた", "先生が来る日を楽しみにしています", "笑顔と会話が増えました"],
+                  gradient: "linear-gradient(135deg, #F0BEDD, #CEC8EA)",
+                },
+                {
+                  title: "コミュニケーション",
+                  items: ["自分の気持ちを言葉で伝えられるようになってきた", "切り替えができるようになってきた"],
+                  gradient: "linear-gradient(135deg, #CEC8EA, #B2DCF2)",
+                },
+                {
+                  title: "ご家族の変化",
+                  items: ["関わり方が分かるようになった", "相談できることで気持ちが楽になった", "余裕ができた"],
+                  gradient: "linear-gradient(135deg, #B2DCF2, #B6E8DE)",
+                },
+              ].map((card) => (
+                <StaggerItem key={card.title}>
+                  {/* グラデーション外枠 + 白い内側 */}
+                  <div className="rounded-2xl overflow-hidden h-full" style={{ background: card.gradient }}>
+                    {/* タイトル（グラデーション上） */}
+                    <div className="px-6 py-5 text-center">
+                      <p
+                        className="font-bold text-xl"
+                        style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#4A3068" }}
+                      >
+                        {card.title}
+                      </p>
+                    </div>
+                    {/* 白い内側エリア */}
+                    <div className="bg-white mx-3 mb-3 rounded-xl px-6 py-8 flex flex-col items-center gap-6">
+                      {/* 吹き出しアイコン */}
+                      <svg width="48" height="40" viewBox="0 0 48 40" fill="none">
+                        <rect x="1" y="1" width="46" height="28" rx="14" stroke="#4A3068" strokeWidth="1.5" strokeOpacity="0.45" />
+                        <path d="M16 29 L14 39 L26 29" stroke="#4A3068" strokeWidth="1.5" strokeOpacity="0.45" strokeLinejoin="round" strokeLinecap="round" />
+                      </svg>
+                      <ul className="space-y-4 text-center">
+                        {card.items.map((item) => (
+                          <li key={item} className="text-lg leading-relaxed" style={{ color: "#4A3068" }}>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+
+          </div>
+        </section>
+
+        {/* ── 保護者の口コミ（背景なし） ── */}
+        <section className="pt-6 pb-8 px-[5%]">
+          <div className="max-w-[1100px] mx-auto">
+
+            <FadeIn direction="up">
+              <div className="flex items-end justify-center gap-1 mb-3">
+                <span className="text-xl" style={{ color: "#c8a84b" }}>★</span>
+                <span className="text-xl" style={{ color: "#c8a84b" }}>★</span>
+                <span className="text-3xl" style={{ color: "#c8a84b" }}>★</span>
+                <span className="text-xl" style={{ color: "#c8a84b" }}>★</span>
+                <span className="text-xl" style={{ color: "#c8a84b" }}>★</span>
+              </div>
+              <h3
+                className="text-center text-2xl font-bold mb-10"
+                style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#231F20" }}
+              >
+                保護者の口コミ
+              </h3>
+            </FadeIn>
+
+            {/* 口コミ 横スライダー（スクロールバー非表示） */}
+            <div
+              className="overflow-x-auto flex gap-5 pb-4 [&::-webkit-scrollbar]:hidden"
+              style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none" }}
+            >
+              {[
+                {
+                  text: "訪問してもらってから、子どもが少しずつ落ち着いてきました。担当の先生が毎回丁寧に関わってくださり、私自身も安心して任せられています。",
+                  attr: "お子様 7歳 / 利用6か月",
+                },
+                {
+                  text: "初めての相談でとても不安でしたが、親の気持ちに寄り添ってくれて、どこよりもここが合うと感じました。子どもも訪問を楽しみにしています。",
+                  attr: "お子様 5歳 / 利用3か月",
+                },
+                {
+                  text: "「どこに相談すればいいかわからない」というところから始まりました。今では関わり方が分かり、家での対応に自信が持てるようになりました。",
+                  attr: "お子様 6歳 / 利用4か月",
+                },
+                {
+                  text: "最初は「訪問看護って何だろう？」という感じでしたが、話してみてすぐ安心できました。今では子どもが先生の来る日を楽しみにしています。",
+                  attr: "お子様 9歳 / 利用5か月",
+                },
+                {
+                  text: "仕事がなかなか続かなくて悩んでいました。看護師さんが定期的に来てくれることで、生活のリズムができて、気持ちも安定してきた気がします。",
+                  attr: "20代 / 利用3か月",
+                },
+                {
+                  text: "入院を繰り返していたのが、訪問看護を始めてから落ち着いてきました。薬の管理もサポートしてもらえて、家族としても安心しています。",
+                  attr: "ご家族より / 利用8か月",
+                },
+                {
+                  text: "突発的に暴れてしまうとき、どう対処すればいいかずっとわかりませんでした。看護師さんと一緒に原因を探るうちに、だんだん対処できるようになってきました。",
+                  attr: "お子様 11歳 / 利用6か月",
+                },
+                {
+                  text: "療育施設に断られ続けて途方に暮れていたとき、訪問看護という選択肢を教えてもらいました。自宅に来てもらえるので、子どもも安心してケアを受けられています。",
+                  attr: "お子様 8歳 / 利用4か月",
+                },
+              ].map((v) => (
+                <div
+                  key={v.attr}
+                  className="flex-none bg-white p-8 flex flex-col justify-between gap-6 shadow-sm"
+                  style={{
+                    width: "min(82vw, 360px)",
+                    scrollSnapAlign: "start",
+                    borderRadius: "0 28px 0 28px",
+                  }}
+                >
+                  <p className="text-base text-[#4a4a4a] leading-relaxed">{v.text}</p>
+                  <p className="text-sm text-[#9b9b9b]">{v.attr}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* スワイプヒント */}
+            <div className="flex justify-end items-center gap-3 mt-4">
+              <span className="text-sm tracking-[0.2em]" style={{ color: "#bbb" }}>Scroll</span>
+              <div className="h-px w-16" style={{ backgroundColor: "#bbb" }} />
+              <span className="text-lg" style={{ color: "#bbb" }}>›</span>
+            </div>
+
           </div>
         </section>
 
 
         {/* ── WHY MIRAISE ── */}
-        <section id="about" className="py-24 px-[5%] bg-white">
-          <div className="max-w-[1100px] mx-auto">
-            <FadeIn direction="up">
-              <SectionLabel>WHY MIRAISE</SectionLabel>
-              <SectionTitle>ミライズが選ばれる理由</SectionTitle>
-              <p className="text-sm text-[#6b6b6b] leading-loose mb-12 max-w-2xl">
-                富山で、精神・知的障害に特化した訪問看護を。
-                <br />
-                それだけでも珍しい存在ですが、ミライズにはもう一つの強みがあります。
-              </p>
-            </FadeIn>
-
-            <div className="space-y-4">
-              {[
-                {
-                  num: "01",
-                  title: "富山で数少ない、精神・療育専門の訪問看護",
-                  desc: "富山では精神・知的障害に特化した訪問看護を行っているステーションがほとんどありません。ミライズは、そのニーズに応えるために生まれました。",
-                },
-                {
-                  num: "02",
-                  title: "乳幼児から成人まで、途切れないケア",
-                  desc: "乳幼児期・小学校・中学校・高校・成人と、ライフステージが変わっても関わり続けます。「小学校に上がったらケアが受けられなくなった」という空白を、ミライズが埋めます。",
-                },
-                {
-                  num: "03",
-                  title: "医療とメンタル、両方からアプローチ",
-                  desc: "薬・血糖値などの医療的なケアと、心の状態・生活の整え方、両軸で支援します。突発的な衝動や癇癪も、原因を探ることで対処できるようになっていきます。",
-                },
-                {
-                  num: "04",
-                  title: "親御さん・ご家族も一緒にサポート",
-                  desc: "ケアするのは本人だけではありません。疲れや不安を抱えた親御さん・ご家族の気持ちにも寄り添います。",
-                },
-                {
-                  num: "05",
-                  title: "「丸投げ」でいい。頼ってください",
-                  desc: "「どうすればいいかわからない」でも大丈夫。解決策を一緒に考えるのが、ミライズの仕事です。",
-                },
-              ].map((item, i) => (
-                <FadeIn key={item.num} direction="up" delay={i * 0.07}>
-                  <div className="flex gap-6 items-start p-6 rounded-2xl bg-[#fafafa] hover:bg-[#fef6fa] transition-colors">
-                    <p
-                      className="text-3xl font-bold leading-none flex-shrink-0 mt-0.5"
-                      style={{
-                        background: "linear-gradient(135deg, #EC99D0, #B3AEDB)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                      }}
-                    >
-                      {item.num}
-                    </p>
-                    <div>
-                      <p className="font-bold text-sm text-[#231F20] mb-1.5">{item.title}</p>
-                      <p className="text-sm text-[#6b6b6b] leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </section>
+        <WhyMiraise />
 
 
         {/* ── HOW TO START ── */}
@@ -598,9 +733,9 @@ export default function HomePage() {
               ].map((item, i) => (
                 <FadeIn key={item.step} direction="up" delay={i * 0.1}>
                   <div className="relative bg-white/5 rounded-2xl p-6 border border-white/10 h-full">
-                    <p className="text-xs font-bold tracking-widest text-[#EC99D0] mb-3">{item.step}</p>
-                    <p className="font-bold text-sm text-white mb-3">{item.title}</p>
-                    <p className="text-xs text-white/60 leading-relaxed">{item.desc}</p>
+                    <p className="text-sm font-bold tracking-widest text-[#EC99D0] mb-3">{item.step}</p>
+                    <p className="font-bold text-base text-white mb-3">{item.title}</p>
+                    <p className="text-sm text-white/60 leading-relaxed">{item.desc}</p>
                     {i < 3 && (
                       <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 text-white/25 text-xl z-10">
                         →
@@ -615,7 +750,7 @@ export default function HomePage() {
 
 
         {/* ── FAQ ── */}
-        <section className="py-24 px-[5%] bg-white">
+        <section className="py-24 px-[5%] bg-white/70">
           <div className="max-w-[800px] mx-auto">
             <FadeIn direction="up">
               <SectionLabel>FAQ</SectionLabel>
@@ -651,13 +786,13 @@ export default function HomePage() {
               ].map((item) => (
                 <FadeIn key={item.q} direction="up" delay={0.05}>
                   <details className="group rounded-2xl border border-[#f0d0e8] overflow-hidden">
-                    <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-bold text-sm text-[#231F20] hover:bg-[#fef6fa] transition-colors [list-style:none] [&::-webkit-details-marker]:hidden">
+                    <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-bold text-base text-[#231F20] hover:bg-[#fef6fa] transition-colors [list-style:none] [&::-webkit-details-marker]:hidden">
                       <span>Q. {item.q}</span>
                       <span className="ml-4 flex-shrink-0 text-[#EC99D0] transition-transform duration-200 group-open:rotate-180">
                         ▾
                       </span>
                     </summary>
-                    <div className="px-6 pb-5 pt-3 text-sm text-[#6b6b6b] leading-relaxed border-t border-[#f0d0e8]">
+                    <div className="px-6 pb-5 pt-3 text-base text-[#6b6b6b] leading-relaxed border-t border-[#f0d0e8]">
                       {item.a}
                     </div>
                   </details>
