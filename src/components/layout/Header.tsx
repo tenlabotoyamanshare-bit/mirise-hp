@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -23,17 +22,10 @@ const navLinks = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [menuHovered, setMenuHovered] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/92 backdrop-blur-md border-b border-[#EC99D0]/20 h-[70px] flex items-center px-[5%]">
-      {/* グラデーションライン（下部） */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[2px]"
-        style={{
-          background:
-            "linear-gradient(90deg, #84D3F4, #B3AEDB, #EC99D0, #F1F0CA, #9EDDC9)",
-        }}
-      />
+    <header className="fixed top-0 left-0 right-0 z-50 h-[100px] flex items-center px-[5%]">
 
       <div className="flex items-center justify-between w-full max-w-[1200px] mx-auto">
         {/* ロゴ */}
@@ -41,58 +33,53 @@ export function Header() {
           <Image
             src="/logo.png"
             alt="MIRISEロゴ"
-            width={44}
-            height={44}
-            className="h-11 w-auto object-contain"
+            width={80}
+            height={80}
+            className="h-16 w-auto object-contain"
           />
-          <div className="leading-snug">
-            <p className="text-sm font-bold text-[#231F20] tracking-wide">
-              訪問看護ステーションミライズ
-            </p>
-            <p className="text-[10px] text-[#6b6b6b] font-normal tracking-wider">
-              MIRISE Visiting Nursing Station
-            </p>
-          </div>
+          <p
+            className="text-base font-bold text-[#231F20] tracking-wide"
+            style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+          >
+            訪問看護ステーション ミライズ
+          </p>
         </Link>
 
-        {/* デスクトップナビ */}
-        <nav className="hidden lg:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[13px] text-[#6b6b6b] hover:text-[#231F20] font-normal tracking-wide transition-colors relative group"
-            >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-full bg-gradient-to-r from-[#EC99D0] to-[#B3AEDB] group-hover:w-full transition-all duration-300" />
-            </Link>
-          ))}
-          {/* CTA — Link に直接スタイルを適用 */}
-          <Link
-            href="/contact"
-            className="ml-2 inline-flex items-center justify-center px-4 h-8 rounded-full text-white text-sm font-bold shadow-md transition-opacity hover:opacity-90"
-            style={{
-              background: "linear-gradient(120deg, #EC99D0, #B3AEDB)",
-              boxShadow: "0 4px 16px rgba(236,153,208,0.35)",
-            }}
-          >
-            お問い合わせ
-          </Link>
-        </nav>
-
-        {/* モバイルメニュー */}
+        {/* ハンバーガーメニュー（全画面サイズで表示） */}
         <Sheet open={open} onOpenChange={setOpen}>
           {/* render プロップで button 要素を上書き */}
           <SheetTrigger
-            className="lg:hidden"
             render={
               <button
-                className="inline-flex items-center justify-center h-9 w-9 rounded-lg hover:bg-[#f7f7f7] transition-colors"
+                className="inline-flex items-center justify-center h-14 w-14 rounded-xl transition-all duration-200"
+                style={menuHovered ? {
+                  background: "linear-gradient(135deg, #EC99D0, #B3AEDB, #84D3F4)",
+                  border: "2.5px solid transparent",
+                } : {
+                  background: "linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #EC99D0, #B3AEDB, #84D3F4) border-box",
+                  border: "2.5px solid transparent",
+                }}
+                onMouseEnter={() => setMenuHovered(true)}
+                onMouseLeave={() => setMenuHovered(false)}
                 aria-label="メニューを開く"
               />
             }
           >
-            <Menu className="h-5 w-5 text-[#231F20]" />
+            {/* 3本線：通常=グラデーション、ホバー=白 */}
+            <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {!menuHovered && (
+                <defs>
+                  <linearGradient id="menuGrad" x1="0" y1="0" x2="28" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#EC99D0" />
+                    <stop offset="50%" stopColor="#B3AEDB" />
+                    <stop offset="100%" stopColor="#84D3F4" />
+                  </linearGradient>
+                </defs>
+              )}
+              <rect y="0"    width="28" height="2.5" rx="1.25" fill={menuHovered ? "#fff" : "url(#menuGrad)"} />
+              <rect y="8.75" width="28" height="2.5" rx="1.25" fill={menuHovered ? "#fff" : "url(#menuGrad)"} />
+              <rect y="17.5" width="28" height="2.5" rx="1.25" fill={menuHovered ? "#fff" : "url(#menuGrad)"} />
+            </svg>
           </SheetTrigger>
 
           <SheetContent side="right" className="w-[280px] px-6 pt-8">
