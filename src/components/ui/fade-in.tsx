@@ -18,7 +18,7 @@ export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 0.6,
+  duration = 1.8,
   direction = "up",
   onScroll = true,
 }: FadeInProps) {
@@ -26,10 +26,10 @@ export function FadeIn({
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   const offsets = {
-    up: { y: 24, x: 0 },
-    down: { y: -24, x: 0 },
-    left: { x: 24, y: 0 },
-    right: { x: -24, y: 0 },
+    up: { y: 28, x: 0 },
+    down: { y: -28, x: 0 },
+    left: { x: 28, y: 0 },
+    right: { x: -28, y: 0 },
   };
 
   const initial = { opacity: 0, ...offsets[direction] };
@@ -59,7 +59,7 @@ type StaggerProps = {
   staggerDelay?: number;
 };
 
-export function StaggerContainer({ children, className, staggerDelay = 0.1 }: StaggerProps) {
+export function StaggerContainer({ children, className, staggerDelay = 0.55 }: StaggerProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -91,8 +91,8 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+        hidden: { opacity: 0, y: 28 },
+        visible: { opacity: 1, y: 0, transition: { duration: 1.8, ease: [0.22, 1, 0.36, 1] } },
       }}
     >
       {children}

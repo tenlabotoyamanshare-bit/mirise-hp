@@ -145,7 +145,7 @@ export function WhyMiraise() {
       <div className="py-24 px-[5%]" style={{ background: "rgba(238, 234, 252, 0.80)" }}>
         <div className="max-w-[1100px] mx-auto">
 
-          <FadeIn direction="up">
+          <FadeIn direction="up" duration={2.0}>
             <p className="text-sm font-bold tracking-widest mb-3" style={{ color: "#EC99D0" }}>
               COMMON CONCERNS
             </p>
@@ -162,7 +162,7 @@ export function WhyMiraise() {
 
           <StaggerContainer
             className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[860px] mx-auto"
-            staggerDelay={0.1}
+            staggerDelay={0.55}
           >
             {worryCards.map((card, i) => (
               <StaggerItem key={i}>
@@ -281,7 +281,7 @@ export function WhyMiraise() {
               />
             </div>
 
-            <FadeIn direction="up">
+            <FadeIn direction="up" duration={2.0}>
               <p className="relative text-sm font-bold tracking-widest mb-3 text-center" style={{ color: "#B3AEDB" }}>
                 OUR STRENGTH
               </p>
@@ -305,7 +305,7 @@ export function WhyMiraise() {
               initial={circleVariants[0].initial}
               whileInView={circleVariants[0].animate}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0 }}
+              transition={{ duration: 2.0, ease: "easeOut", delay: 0 }}
               className="w-64 h-64 sm:w-96 sm:h-96 rounded-full shrink-0 flex flex-col items-center justify-center text-center px-10 border-4 border-white relative"
               style={{ background: strengths[0].bg, zIndex: 20 }}
             >
@@ -326,7 +326,7 @@ export function WhyMiraise() {
                 initial={circleVariants[1].initial}
                 whileInView={circleVariants[1].animate}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+                transition={{ duration: 2.0, ease: "easeOut", delay: 0.5 }}
                 className="w-64 h-64 sm:w-96 sm:h-96 rounded-full shrink-0 flex flex-col items-center justify-center text-center px-10 border-4 border-white relative"
                 style={{ background: strengths[1].bg, zIndex: 10 }}
               >
@@ -344,7 +344,7 @@ export function WhyMiraise() {
                 initial={circleVariants[2].initial}
                 whileInView={circleVariants[2].animate}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+                transition={{ duration: 2.0, ease: "easeOut", delay: 0.5 }}
                 className="-ml-14 sm:-ml-20 w-64 h-64 sm:w-96 sm:h-96 rounded-full shrink-0 flex flex-col items-center justify-center text-center px-10 border-4 border-white relative"
                 style={{ background: strengths[2].bg, zIndex: 10 }}
               >
@@ -363,7 +363,7 @@ export function WhyMiraise() {
           {/* ── 3強みの説明カード（色付き枠） ── */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-[900px] mx-auto">
             {strengths.map((s, i) => (
-              <FadeIn key={i} direction="up" delay={i * 0.1}>
+              <FadeIn key={i} direction="up" delay={i * 0.55} duration={2.0}>
                 <div
                   className="text-center rounded-2xl px-6 py-8"
                   style={{

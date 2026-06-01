@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
 import { WhyMiraise } from "@/components/sections/WhyMiraise";
+import { HeroSection } from "@/components/sections/HeroSection";
 
 export const metadata: Metadata = {
   title: "訪問看護ステーションミライズ | 富山の精神・療育専門訪問看護",
@@ -41,134 +42,10 @@ export default function HomePage() {
     <div>
 
       {/* ══════════════════════════════════════════
-          HERO
-          PC  : タイトル中央 + 全幅3円
-          SP  : タイトル中央 + 縦3帯
+          HERO — スクロールピン演出
+          HeroSection.tsx 参照
       ══════════════════════════════════════════ */}
-      <section className="flex flex-col items-center text-center">
-
-        {/* ① 中央ブロック：絶対配置でタイトルを50%・富山を25%に固定 */}
-        <div className="relative w-full h-[calc(100vh-100px)]">
-
-          {/* 富山バッジ — 上端と中央の中間（top: 25%）*/}
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <FadeIn delay={0} onScroll={false}>
-              <div
-                className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-md"
-                style={{ background: "linear-gradient(135deg, #EC99D0, #B3AEDB)" }}
-              >
-                <span
-                  className="text-white font-bold text-base sm:text-lg leading-none"
-                  style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
-                >
-                  富山
-                </span>
-              </div>
-            </FadeIn>
-          </div>
-
-          {/* タイトル + サブタイトル — 画面中央（top: 50%）*/}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-[5%] flex flex-col items-center gap-8">
-            <FadeIn delay={0.12} onScroll={false}>
-              <h1
-                className="flex flex-wrap sm:flex-nowrap items-baseline justify-center gap-x-2"
-                style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
-              >
-                <span className="text-3xl sm:text-5xl font-medium text-[#231F20]">
-                  訪問看護ステーション
-                </span>
-                <span className="text-5xl sm:text-6xl font-medium text-[#231F20]">
-                  ミライズ
-                </span>
-              </h1>
-            </FadeIn>
-
-            <FadeIn delay={0.22} onScroll={false}>
-              <p
-                className="text-sm text-[#7a7a7a] tracking-widest font-medium"
-                style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
-              >
-                精神・療育に特化した訪問看護ステーション
-              </p>
-            </FadeIn>
-          </div>
-
-        </div>
-
-        {/* ② 説明文 */}
-        <div className="px-[5%] w-full max-w-2xl mx-auto pb-10 flex flex-col items-center gap-2">
-          <FadeIn delay={0.35} onScroll={false}>
-            <p
-              className="text-base font-bold tracking-[0.25em] text-[#B3AEDB]"
-              style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
-            >
-              乳幼児・小児・成人まで
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.42} onScroll={false}>
-            <p
-              className="text-sm text-[#7a7a7a] leading-loose tracking-wide"
-              style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
-            >
-              精神・知的障害のある方とそのご家族に寄り添い、
-              <br />
-              自宅で受けられる専門的なケアを富山でお届けします。
-            </p>
-          </FadeIn>
-        </div>
-
-        {/* ③ CTAボタン */}
-        <FadeIn delay={0.45} onScroll={false} className="w-full">
-
-          {/* PC：3つの丸が均等配置・最大サイズ制限あり
-               w-[min(28vw,240px)] → 28vw か 240px の小さい方
-               justify-evenly で全幅に均等に散らす            */}
-          <div className="hidden sm:flex w-full justify-evenly items-center py-4">
-            <a
-              href="#worries"
-              className="w-[min(30vw,280px)] h-[min(30vw,280px)] rounded-full flex items-center justify-center text-center font-bold border-2 border-[#EC99D0] text-[#EC99D0] bg-white/80 hover:bg-[#EC99D0] hover:text-white transition-all text-sm lg:text-lg"
-            >
-              <span className="px-4 leading-relaxed">こんなお悩み<br />ありませんか？</span>
-            </a>
-            <a
-              href="#what-we-can-do"
-              className="w-[min(30vw,280px)] h-[min(30vw,280px)] rounded-full flex items-center justify-center text-center font-bold border-2 border-[#B3AEDB] text-[#B3AEDB] bg-white/80 hover:bg-[#B3AEDB] hover:text-white transition-all text-sm lg:text-lg"
-            >
-              <span className="px-4 leading-relaxed">訪問看護でできること</span>
-            </a>
-            <a
-              href="#about"
-              className="w-[min(30vw,280px)] h-[min(30vw,280px)] rounded-full flex items-center justify-center text-center font-bold border-2 border-[#84D3F4] text-[#84D3F4] bg-white/80 hover:bg-[#84D3F4] hover:text-white transition-all text-sm lg:text-lg"
-            >
-              <span className="px-4 leading-relaxed">ミライズについて</span>
-            </a>
-          </div>
-
-          {/* モバイル：3つの帯を縦に重ねる（常時カラー） */}
-          <div className="flex sm:hidden flex-col w-full">
-            <a
-              href="#worries"
-              className="w-full py-5 flex items-center justify-center text-base font-bold bg-[#EC99D0]/30 text-[#c45898] border-t border-[#EC99D0]/40"
-            >
-              こんなお悩みありませんか？
-            </a>
-            <a
-              href="#what-we-can-do"
-              className="w-full py-5 flex items-center justify-center text-base font-bold bg-[#B3AEDB]/30 text-[#7a74b4] border-t border-[#B3AEDB]/40"
-            >
-              訪問看護でできること
-            </a>
-            <a
-              href="#about"
-              className="w-full py-5 flex items-center justify-center text-base font-bold bg-[#84D3F4]/30 text-[#3d8cb4] border-t border-[#84D3F4]/40 border-b border-[#84D3F4]/30"
-            >
-              ミライズについて
-            </a>
-          </div>
-
-        </FadeIn>
-
-      </section>
+      <HeroSection />
 
 
       {/* ══════════════════════════════════════════
@@ -180,7 +57,7 @@ export default function HomePage() {
         {/* ── WHAT WE CAN DO ── */}
         <section id="what-we-can-do" className="py-24 px-[5%] bg-white/60">
           <div className="max-w-[1100px] mx-auto">
-            <FadeIn direction="up">
+            <FadeIn direction="up" duration={2.0}>
               <SectionLabel>WHAT WE CAN DO</SectionLabel>
               <h2
                 className="text-4xl font-bold mb-5 text-[#231F20]"
@@ -197,7 +74,7 @@ export default function HomePage() {
 
             <StaggerContainer
               className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5"
-              staggerDelay={0.08}
+              staggerDelay={0.55}
             >
               {[
                 {
@@ -278,7 +155,7 @@ export default function HomePage() {
         >
 
           <div className="max-w-[1100px] mx-auto">
-            <FadeIn direction="up">
+            <FadeIn direction="up" duration={2.0}>
               {/* タイトルエリア：ダイヤモンド装飾はここの中だけ */}
               <div className="relative overflow-hidden text-center py-10 mb-4">
                 {/* ── ダイヤモンド背景装飾（文字と同程度のサイズ） ── */}
@@ -337,7 +214,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-0">
 
               {/* ━━ 行1：ヘッダー ━━ */}
-              <FadeIn direction="up" delay={0.1} className="md:col-start-1 md:row-start-1">
+              <FadeIn direction="up" delay={0.15} duration={2.0} className="md:col-start-1 md:row-start-1">
                 <div className="rounded-t-3xl px-8 py-6" style={{ background: "linear-gradient(135deg, #EC99D0, #F1C6E7)" }}>
                   <p className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
                     お子さん・親御さん
@@ -346,7 +223,7 @@ export default function HomePage() {
                 </div>
               </FadeIn>
 
-              <FadeIn direction="up" delay={0.2} className="md:col-start-2 md:row-start-1 mt-6 md:mt-0">
+              <FadeIn direction="up" delay={0.55} duration={2.0} className="md:col-start-2 md:row-start-1 mt-6 md:mt-0">
                 <div className="rounded-t-3xl px-8 py-6" style={{ background: "linear-gradient(135deg, #B3AEDB, #C8C4E8)" }}>
                   <p className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
                     成人の方・ご家族
@@ -462,7 +339,7 @@ export default function HomePage() {
           <div className="max-w-[1100px] mx-auto">
 
             {/* ① タイトル＆説明 */}
-            <FadeIn direction="up">
+            <FadeIn direction="up" duration={2.0}>
               <div className="text-center mb-14">
                 <h2
                   className="text-4xl font-bold mb-4"
@@ -483,7 +360,7 @@ export default function HomePage() {
             {/* ② 4つの統計 */}
             <StaggerContainer
               className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-32"
-              staggerDelay={0.1}
+              staggerDelay={0.55}
             >
               {[
                 { value: "94", label: "子どもの成長を\n感じられた" },
@@ -544,7 +421,7 @@ export default function HomePage() {
             </StaggerContainer>
 
             {/* ③ 利用後の変化カード */}
-            <FadeIn direction="up">
+            <FadeIn direction="up" duration={2.0}>
               <h3
                 className="text-center text-3xl font-bold mb-14"
                 style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#4A3068" }}
@@ -555,7 +432,7 @@ export default function HomePage() {
 
             <StaggerContainer
               className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8"
-              staggerDelay={0.1}
+              staggerDelay={0.55}
             >
               {[
                 {
@@ -613,7 +490,7 @@ export default function HomePage() {
         <section className="pt-6 pb-8 px-[5%]">
           <div className="max-w-[1100px] mx-auto">
 
-            <FadeIn direction="up">
+            <FadeIn direction="up" duration={2.0}>
               <div className="flex items-end justify-center gap-1 mb-3">
                 <span className="text-xl" style={{ color: "#c8a84b" }}>★</span>
                 <span className="text-xl" style={{ color: "#c8a84b" }}>★</span>
@@ -704,7 +581,7 @@ export default function HomePage() {
           style={{ background: "linear-gradient(160deg, rgba(253,242,250,0.90), rgba(237,246,255,0.90))" }}
         >
           <div className="max-w-[1100px] mx-auto">
-            <FadeIn direction="up">
+            <FadeIn direction="up" duration={2.0}>
               <SectionLabel color="#B3AEDB">HOW TO START</SectionLabel>
               <h2
                 className="text-4xl font-bold mb-16 text-[#231F20]"
@@ -761,7 +638,7 @@ export default function HomePage() {
                 },
               ].map((step, i, arr) => (
                 <Fragment key={i}>
-                  <FadeIn direction="up" delay={i * 0.1} className="flex-1 min-w-0">
+                  <FadeIn direction="up" delay={i * 0.6} duration={2.0} className="flex-1 min-w-0">
                     <div className="bg-white/90 rounded-2xl shadow-sm px-4 py-8 flex flex-col items-center text-center h-full">
                       {/* STEP ラベル */}
                       <p className="text-sm font-bold tracking-widest mb-2" style={{ color: step.color }}>

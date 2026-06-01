@@ -136,6 +136,8 @@
   }
   html {
     @apply font-sans;
+    /* アンカーリンク時に固定ヘッダー(100px)分だけずらす */
+    scroll-padding-top: 100px;
   }
   body {
     @apply bg-background text-foreground;

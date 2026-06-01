@@ -51,11 +51,8 @@ export function Header() {
           <SheetTrigger
             render={
               <button
-                className="inline-flex items-center justify-center h-14 w-14 rounded-xl transition-all duration-200"
-                style={menuHovered ? {
-                  background: "linear-gradient(135deg, #EC99D0, #B3AEDB, #84D3F4)",
-                  border: "2.5px solid transparent",
-                } : {
+                className="relative inline-flex items-center justify-center h-14 w-14 rounded-xl overflow-hidden"
+                style={{
                   background: "linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #EC99D0, #B3AEDB, #84D3F4) border-box",
                   border: "2.5px solid transparent",
                 }}
@@ -65,20 +62,36 @@ export function Header() {
               />
             }
           >
-            {/* 3本線：通常=グラデーション、ホバー=白 */}
-            <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {!menuHovered && (
-                <defs>
-                  <linearGradient id="menuGrad" x1="0" y1="0" x2="28" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stopColor="#EC99D0" />
-                    <stop offset="50%" stopColor="#B3AEDB" />
-                    <stop offset="100%" stopColor="#84D3F4" />
-                  </linearGradient>
-                </defs>
-              )}
-              <rect y="0"    width="28" height="2.5" rx="1.25" fill={menuHovered ? "#fff" : "url(#menuGrad)"} />
-              <rect y="8.75" width="28" height="2.5" rx="1.25" fill={menuHovered ? "#fff" : "url(#menuGrad)"} />
-              <rect y="17.5" width="28" height="2.5" rx="1.25" fill={menuHovered ? "#fff" : "url(#menuGrad)"} />
+            {/* グラデーション塗りオーバーレイ — ゆっくりフェードイン（700ms） */}
+            <span
+              className="absolute inset-0 pointer-events-none transition-opacity duration-700"
+              style={{
+                background: "linear-gradient(135deg, #EC99D0, #B3AEDB, #84D3F4)",
+                opacity: menuHovered ? 1 : 0,
+              }}
+            />
+
+            {/* 3本線：グラデーション（通常）↔ 白（ホバー）をゆっくり切り替え */}
+            <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative z-10">
+              <defs>
+                <linearGradient id="menuGrad" x1="0" y1="0" x2="28" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#EC99D0" />
+                  <stop offset="50%" stopColor="#B3AEDB" />
+                  <stop offset="100%" stopColor="#84D3F4" />
+                </linearGradient>
+              </defs>
+              {/* グラデーション線（ホバー時にゆっくり消える） */}
+              <g style={{ opacity: menuHovered ? 0 : 1, transition: "opacity 0.7s ease" }}>
+                <rect y="0"    width="28" height="2.5" rx="1.25" fill="url(#menuGrad)" />
+                <rect y="8.75" width="28" height="2.5" rx="1.25" fill="url(#menuGrad)" />
+                <rect y="17.5" width="28" height="2.5" rx="1.25" fill="url(#menuGrad)" />
+              </g>
+              {/* 白線（ホバー時にゆっくり現れる） */}
+              <g style={{ opacity: menuHovered ? 1 : 0, transition: "opacity 0.7s ease" }}>
+                <rect y="0"    width="28" height="2.5" rx="1.25" fill="white" />
+                <rect y="8.75" width="28" height="2.5" rx="1.25" fill="white" />
+                <rect y="17.5" width="28" height="2.5" rx="1.25" fill="white" />
+              </g>
             </svg>
           </SheetTrigger>
 
