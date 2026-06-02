@@ -172,11 +172,11 @@ export function HeroSection() {
             ))}
           </div>
 
-          {/* モバイル：縦3丸 */}
-          <div className="flex sm:hidden flex-col items-center gap-4 w-full">
+          {/* モバイル：帯状3列 */}
+          <div className="flex sm:hidden flex-col gap-3 w-full px-[5%]">
             {(
               [
-                { href: "#worries",        label: ["こんなお悩み", "ありませんか？"], color: "#EC99D0", delay: 0.25 },
+                { href: "#worries",        label: ["こんなお悩みありませんか？"], color: "#EC99D0", delay: 0.25 },
                 { href: "#what-we-can-do", label: ["訪問看護でできること"],          color: "#B3AEDB", delay: 0.5  },
                 { href: "#about",          label: ["ミライズについて"],              color: "#84D3F4", delay: 0.75 },
               ] as const
@@ -188,10 +188,10 @@ export function HeroSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 1.3, delay, ease: EASE }}
-                className="w-32 h-32 rounded-full flex items-center justify-center text-center font-bold border-2 bg-white/80 text-sm"
-                style={{ borderColor: color, color }}
+                className="w-full flex items-center justify-center py-5 rounded-2xl font-bold text-white text-base text-center"
+                style={{ backgroundColor: color }}
               >
-                <span className="px-3 leading-relaxed">
+                <span className="leading-relaxed">
                   {label.map((line, i) => (
                     <span key={i}>{line}{i < label.length - 1 && <br />}</span>
                   ))}

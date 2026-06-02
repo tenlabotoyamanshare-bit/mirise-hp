@@ -150,12 +150,12 @@ export function WhyMiraise() {
               COMMON CONCERNS
             </p>
             <h2
-              className="text-4xl font-bold mb-4 text-[#231F20]"
+              className="text-2xl sm:text-4xl font-bold mb-12 sm:mb-4 text-[#231F20]"
               style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
             >
               よくあるご不安について
             </h2>
-            <p className="text-base text-[#6b6b6b] leading-loose mb-12 max-w-2xl">
+            <p className="hidden sm:block text-base text-[#6b6b6b] leading-loose mb-12 max-w-2xl">
               よくいただくお悩みと、ミライズでできることをご紹介します。
             </p>
           </FadeIn>
@@ -286,12 +286,12 @@ export function WhyMiraise() {
                 OUR STRENGTH
               </p>
               <h2
-                className="relative text-5xl font-bold mb-4 text-[#231F20] text-center"
+                className="relative text-3xl sm:text-5xl font-bold mb-4 text-[#231F20] text-center"
                 style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
               >
                 ミライズの強み
               </h2>
-              <p className="relative text-base text-[#6b6b6b] leading-loose mb-14 text-center max-w-2xl mx-auto">
+              <p className="relative hidden sm:block text-base text-[#6b6b6b] leading-loose mb-14 text-center max-w-2xl mx-auto">
                 富山で数少ない、精神・療育専門の訪問看護だからできること。
               </p>
             </FadeIn>

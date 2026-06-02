@@ -38,7 +38,7 @@ export function Header() {
             className="h-16 w-auto object-contain"
           />
           <p
-            className="text-base font-bold text-[#231F20] tracking-wide"
+            className="hidden sm:block text-base font-bold text-[#231F20] tracking-wide"
             style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
           >
             訪問看護ステーション ミライズ

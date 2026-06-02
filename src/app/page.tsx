@@ -52,7 +52,7 @@ export default function HomePage() {
           各セクション — space-y-3 でギャップを作り、
           その隙間から固定背景（水彩）が透けて見える
       ══════════════════════════════════════════ */}
-      <div className="space-y-3 pb-3">
+      <div className="space-y-16 pb-8">
 
         {/* ── WHAT WE CAN DO ── */}
         <section id="what-we-can-do" className="py-24 px-[5%] bg-white/60">
@@ -60,12 +60,12 @@ export default function HomePage() {
             <FadeIn direction="up" duration={2.0}>
               <SectionLabel>WHAT WE CAN DO</SectionLabel>
               <h2
-                className="text-4xl font-bold mb-5 text-[#231F20]"
+                className="text-2xl sm:text-4xl font-bold mb-5 text-[#231F20]"
                 style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
               >
                 訪問看護でできること
               </h2>
-              <p className="text-base text-[#6b6b6b] leading-loose mb-14 max-w-2xl">
+              <p className="hidden sm:block text-base text-[#6b6b6b] leading-loose mb-14 max-w-2xl">
                 通所不要。自宅で受けられる、精神・知的に特化した専門的なケア。
                 <br />
                 困りごとを解決するだけでなく、その人らしい強みを一緒に伸ばします。
@@ -158,35 +158,37 @@ export default function HomePage() {
             <FadeIn direction="up" duration={2.0}>
               {/* タイトルエリア：ダイヤモンド装飾はここの中だけ */}
               <div className="relative overflow-hidden text-center py-10 mb-4">
-                {/* ── ダイヤモンド背景装飾（文字と同程度のサイズ） ── */}
-                {[
-                  { size: 54,  x: -187, color: "rgba(236,153,208,0.32)" },
-                  { size: 84,  x: -120, color: "rgba(236,153,208,0.24)" },
-                  { size: 114, x:  -60, color: "rgba(179,174,219,0.22)" },
-                  { size: 135, x:    0, color: "rgba(179,174,219,0.18)" },
-                  { size: 114, x:   60, color: "rgba(132,211,244,0.22)" },
-                  { size: 84,  x:  120, color: "rgba(132,211,244,0.24)" },
-                  { size: 54,  x:  187, color: "rgba(158,221,201,0.32)" },
-                ].map((d, i) => (
-                  <div
-                    key={i}
-                    className="pointer-events-none select-none"
-                    style={{
-                      position: "absolute",
-                      width: d.size,
-                      height: d.size,
-                      left: `calc(50% + ${d.x - d.size / 2}px)`,
-                      top: "50%",
-                      transform: "translateY(-50%) rotate(45deg)",
-                      backgroundColor: d.color,
-                      borderRadius: "4px",
-                    }}
-                  />
-                ))}
+                {/* ── ダイヤモンド背景装飾（モバイルは70%縮小） ── */}
+                <div className="absolute inset-0 scale-[0.65] sm:scale-100 origin-center">
+                  {[
+                    { size: 54,  x: -187, color: "rgba(236,153,208,0.32)" },
+                    { size: 84,  x: -120, color: "rgba(236,153,208,0.24)" },
+                    { size: 114, x:  -60, color: "rgba(179,174,219,0.22)" },
+                    { size: 135, x:    0, color: "rgba(179,174,219,0.18)" },
+                    { size: 114, x:   60, color: "rgba(132,211,244,0.22)" },
+                    { size: 84,  x:  120, color: "rgba(132,211,244,0.24)" },
+                    { size: 54,  x:  187, color: "rgba(158,221,201,0.32)" },
+                  ].map((d, i) => (
+                    <div
+                      key={i}
+                      className="pointer-events-none select-none"
+                      style={{
+                        position: "absolute",
+                        width: d.size,
+                        height: d.size,
+                        left: `calc(50% + ${d.x - d.size / 2}px)`,
+                        top: "50%",
+                        transform: "translateY(-50%) rotate(45deg)",
+                        backgroundColor: d.color,
+                        borderRadius: "4px",
+                      }}
+                    />
+                  ))}
+                </div>
                 {/* タイトル（ダイヤモンドの前面） */}
                 <div className="relative z-10">
                   <h2
-                    className="text-4xl font-bold mb-5 text-[#231F20]"
+                    className="text-2xl sm:text-4xl font-bold mb-5 text-[#231F20]"
                     style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
                   >
                     こんなお悩みありませんか？
@@ -196,7 +198,7 @@ export default function HomePage() {
 
               {/* スクロール促進アニメーション ↓ */}
               <div className="flex justify-center mb-10">
-                <div className="animate-bounce opacity-50" style={{ color: "#B3AEDB" }}>
+                <div className="animate-bounce opacity-50 scale-75 sm:scale-100 origin-center" style={{ color: "#B3AEDB" }}>
                   <svg width="80" height="44" viewBox="0 0 80 44" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="4 6 40 24 76 6" />
                     <polyline points="4 22 40 40 76 22" />
@@ -213,8 +215,9 @@ export default function HomePage() {
             */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-0">
 
-              {/* ━━ 行1：ヘッダー ━━ */}
-              <FadeIn direction="up" delay={0.15} duration={2.0} className="md:col-start-1 md:row-start-1">
+              {/* ━━ お子さんカラム ━━ */}
+              {/* モバイル: order-1〜4 で先にまとめて表示 / PC: col-start/row-start で2列配置 */}
+              <FadeIn direction="up" delay={0.15} duration={2.0} className="order-1 md:col-start-1 md:row-start-1">
                 <div className="rounded-t-3xl px-8 py-6" style={{ background: "linear-gradient(135deg, #EC99D0, #F1C6E7)" }}>
                   <p className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
                     お子さん・親御さん
@@ -223,7 +226,62 @@ export default function HomePage() {
                 </div>
               </FadeIn>
 
-              <FadeIn direction="up" delay={0.55} duration={2.0} className="md:col-start-2 md:row-start-1 mt-6 md:mt-0">
+              <FadeIn direction="up" delay={0.2} duration={2.0} className="order-2 md:col-start-1 md:row-start-2 md:h-full">
+                <div className="h-full px-8 py-6 bg-white/85">
+                  <p className="text-sm font-bold tracking-widest text-[#EC99D0] mb-4">こんなお悩みは？</p>
+                  <ul className="space-y-3">
+                    {[
+                      "療育施設に申し込んだけど、順番待ちでいつ入れるかわからない",
+                      "小学校に上がったら、今まで通えていた療育施設が使えなくなった",
+                      "子どもが突発的に暴れたり衝動的になったとき、どう対処すればいいかわからない",
+                      "子どものケアに限界を感じている。誰かに丸ごと相談したい",
+                      "富山では精神・知的に特化した訪問看護をしているところがほとんどない",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-base text-[#4a4a4a] leading-relaxed">
+                        <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#EC99D0]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeIn>
+
+              <FadeIn direction="up" delay={0.35} duration={2.0} className="order-3 md:col-start-1 md:row-start-3 md:h-full">
+                <div
+                  className="h-full flex items-center gap-3 px-8 py-4"
+                  style={{ background: "rgba(236,153,208,0.18)" }}
+                >
+                  <div className="h-px flex-1" style={{ background: "rgba(236,153,208,0.5)" }} />
+                  <p className="text-sm font-bold whitespace-nowrap" style={{ color: "#c96fa0" }}>訪問看護でできること</p>
+                  <div className="h-px flex-1" style={{ background: "rgba(236,153,208,0.5)" }} />
+                </div>
+              </FadeIn>
+
+              <FadeIn direction="up" delay={0.5} duration={2.0} className="order-4 md:col-start-1 md:row-start-4 md:h-full">
+                <div className="h-full rounded-b-3xl px-8 py-6 bg-white/85">
+                  <ul className="space-y-3 mb-5">
+                    {[
+                      "自宅への訪問看護で、通所が難しいお子さんにも専門的なサポートを提供",
+                      "突発的な衝動・癇癪の原因を一緒に探り、対処法を考える",
+                      "日常生活の動作（着替え・食事など）の練習や、自主性を育む支援",
+                      "親御さんの不安や疲れに寄り添うメンタルサポート",
+                      "学校・他の支援機関との連携",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-base text-[#4a4a4a] leading-relaxed">
+                        <span className="mt-1 flex-shrink-0 font-bold text-lg leading-none text-[#EC99D0]">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="rounded-xl p-4 text-sm text-[#6b6b6b] leading-relaxed" style={{ background: "rgba(252,232,244,0.7)" }}>
+                    療育施設が満員で断られた、小学校に上がってケアが途切れてしまった。そんな状況でも、訪問看護という選択肢があります。丸ごと頼っていただいて大丈夫です。
+                  </div>
+                </div>
+              </FadeIn>
+
+              {/* ━━ 成人カラム ━━ */}
+              {/* モバイル: order-5〜8 でお子さんの後に表示 / PC: col-start-2 で右列 */}
+              <FadeIn direction="up" delay={0.55} duration={2.0} className="order-5 md:col-start-2 md:row-start-1 mt-6 md:mt-0">
                 <div className="rounded-t-3xl px-8 py-6" style={{ background: "linear-gradient(135deg, #B3AEDB, #C8C4E8)" }}>
                   <p className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
                     成人の方・ご家族
@@ -232,102 +290,58 @@ export default function HomePage() {
                 </div>
               </FadeIn>
 
-              {/* ━━ 行2：お悩みリスト（高さが揃う） ━━ */}
-              <div className="md:col-start-1 md:row-start-2 px-8 py-6 bg-white/85">
-                <p className="text-sm font-bold tracking-widest text-[#EC99D0] mb-4">こんなお悩みは？</p>
-                <ul className="space-y-3">
-                  {[
-                    "療育施設に申し込んだけど、順番待ちでいつ入れるかわからない",
-                    "小学校に上がったら、今まで通えていた療育施設が使えなくなった",
-                    "子どもが突発的に暴れたり衝動的になったとき、どう対処すればいいかわからない",
-                    "子どものケアに限界を感じている。誰かに丸ごと相談したい",
-                    "富山では精神・知的に特化した訪問看護をしているところがほとんどない",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-base text-[#4a4a4a] leading-relaxed">
-                      <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#EC99D0]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="md:col-start-2 md:row-start-2 px-8 py-6 bg-white/85">
-                <p className="text-sm font-bold tracking-widest text-[#B3AEDB] mb-4">こんなお悩みは？</p>
-                <ul className="space-y-3">
-                  {[
-                    "入院を繰り返していて、なかなか安定した生活が送れない",
-                    "メンタルの問題で仕事が長続きしない",
-                    "職場の人間関係や、仕事の中で苦手なことがあって悩んでいる",
-                    "イライラや衝動の原因がわからず、対処の仕方がわからない",
-                    "相談員・支援者として、利用者のために専門的なケアにつなげたい",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-base text-[#4a4a4a] leading-relaxed">
-                      <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#B3AEDB]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* ━━ 行3：区切り（必ず揃う） ━━ */}
-              <div
-                className="md:col-start-1 md:row-start-3 flex items-center gap-3 px-8 py-4"
-                style={{ background: "rgba(236,153,208,0.18)" }}
-              >
-                <div className="h-px flex-1" style={{ background: "rgba(236,153,208,0.5)" }} />
-                <p className="text-sm font-bold whitespace-nowrap" style={{ color: "#c96fa0" }}>訪問看護でできること</p>
-                <div className="h-px flex-1" style={{ background: "rgba(236,153,208,0.5)" }} />
-              </div>
-
-              <div
-                className="md:col-start-2 md:row-start-3 flex items-center gap-3 px-8 py-4"
-                style={{ background: "rgba(175,155,235,0.15)" }}
-              >
-                <div className="h-px flex-1" style={{ background: "rgba(175,155,235,0.5)" }} />
-                <p className="text-sm font-bold whitespace-nowrap" style={{ color: "#8a84c4" }}>訪問看護でできること</p>
-                <div className="h-px flex-1" style={{ background: "rgba(179,174,219,0.5)" }} />
-              </div>
-
-              {/* ━━ 行4：解決策リスト ━━ */}
-              <div className="md:col-start-1 md:row-start-4 rounded-b-3xl px-8 py-6 bg-white/85">
-                <ul className="space-y-3 mb-5">
-                  {[
-                    "自宅への訪問看護で、通所が難しいお子さんにも専門的なサポートを提供",
-                    "突発的な衝動・癇癪の原因を一緒に探り、対処法を考える",
-                    "日常生活の動作（着替え・食事など）の練習や、自主性を育む支援",
-                    "親御さんの不安や疲れに寄り添うメンタルサポート",
-                    "学校・他の支援機関との連携",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-base text-[#4a4a4a] leading-relaxed">
-                      <span className="mt-1 flex-shrink-0 font-bold text-lg leading-none text-[#EC99D0]">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="rounded-xl p-4 text-sm text-[#6b6b6b] leading-relaxed" style={{ background: "rgba(252,232,244,0.7)" }}>
-                  療育施設が満員で断られた、小学校に上がってケアが途切れてしまった。そんな状況でも、訪問看護という選択肢があります。丸ごと頼っていただいて大丈夫です。
+              <FadeIn direction="up" delay={0.7} duration={2.0} className="order-6 md:col-start-2 md:row-start-2 md:h-full">
+                <div className="h-full px-8 py-6 bg-white/85">
+                  <p className="text-sm font-bold tracking-widest text-[#B3AEDB] mb-4">こんなお悩みは？</p>
+                  <ul className="space-y-3">
+                    {[
+                      "入院を繰り返していて、なかなか安定した生活が送れない",
+                      "メンタルの問題で仕事が長続きしない",
+                      "職場の人間関係や、仕事の中で苦手なことがあって悩んでいる",
+                      "イライラや衝動の原因がわからず、対処の仕方がわからない",
+                      "相談員・支援者として、利用者のために専門的なケアにつなげたい",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-base text-[#4a4a4a] leading-relaxed">
+                        <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#B3AEDB]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
+              </FadeIn>
 
-              <div className="md:col-start-2 md:row-start-4 rounded-b-3xl px-8 py-6 bg-white/85">
-                <ul className="space-y-3 mb-5">
-                  {[
-                    "服薬管理・血糖値コントロールなど医療的なサポート",
-                    "就労継続のための悩み相談・メンタルサポート",
-                    "職場の人間関係や苦手なことへの対処法を一緒に考える",
-                    "イライラや衝動の原因を探り、セルフコントロールをサポート",
-                    "入院を繰り返さないための生活支援・定期的な関わり",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-base text-[#4a4a4a] leading-relaxed">
-                      <span className="mt-1 flex-shrink-0 font-bold text-lg leading-none text-[#B3AEDB]">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="rounded-xl p-4 text-sm text-[#6b6b6b] leading-relaxed" style={{ background: "rgba(220,205,255,0.45)" }}>
-                  「また入院してしまった」「仕事が続かない」。そんな繰り返しを断ち切るために、定期的に自宅に訪問する看護師がいることが大きな力になります。
+              <FadeIn direction="up" delay={0.85} duration={2.0} className="order-7 md:col-start-2 md:row-start-3 md:h-full">
+                <div
+                  className="h-full flex items-center gap-3 px-8 py-4"
+                  style={{ background: "rgba(175,155,235,0.15)" }}
+                >
+                  <div className="h-px flex-1" style={{ background: "rgba(175,155,235,0.5)" }} />
+                  <p className="text-sm font-bold whitespace-nowrap" style={{ color: "#8a84c4" }}>訪問看護でできること</p>
+                  <div className="h-px flex-1" style={{ background: "rgba(179,174,219,0.5)" }} />
                 </div>
-              </div>
+              </FadeIn>
+
+              <FadeIn direction="up" delay={1.0} duration={2.0} className="order-8 md:col-start-2 md:row-start-4 md:h-full">
+                <div className="h-full rounded-b-3xl px-8 py-6 bg-white/85">
+                  <ul className="space-y-3 mb-5">
+                    {[
+                      "服薬管理・血糖値コントロールなど医療的なサポート",
+                      "就労継続のための悩み相談・メンタルサポート",
+                      "職場の人間関係や苦手なことへの対処法を一緒に考える",
+                      "イライラや衝動の原因を探り、セルフコントロールをサポート",
+                      "入院を繰り返さないための生活支援・定期的な関わり",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-base text-[#4a4a4a] leading-relaxed">
+                        <span className="mt-1 flex-shrink-0 font-bold text-lg leading-none text-[#B3AEDB]">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="rounded-xl p-4 text-sm text-[#6b6b6b] leading-relaxed" style={{ background: "rgba(220,205,255,0.45)" }}>
+                    「また入院してしまった」「仕事が続かない」。そんな繰り返しを断ち切るために、定期的に自宅に訪問する看護師がいることが大きな力になります。
+                  </div>
+                </div>
+              </FadeIn>
 
             </div>
           </div>
@@ -342,7 +356,7 @@ export default function HomePage() {
             <FadeIn direction="up" duration={2.0}>
               <div className="text-center mb-14">
                 <h2
-                  className="text-4xl font-bold mb-4"
+                  className="text-2xl sm:text-4xl font-bold mb-4"
                   style={{
                     color: "#3d9e8c",
                     fontFamily: "var(--font-zen-maru-gothic)",
@@ -351,7 +365,7 @@ export default function HomePage() {
                 >
                   保護者の声とアンケート結果
                 </h2>
-                <p className="text-sm text-[#6b6b6b] leading-relaxed">
+                <p className="hidden sm:block text-sm text-[#6b6b6b] leading-relaxed">
                   利用開始から2か月以上が経過した保護者36名を対象に実施したアンケートと、実際にいただいた口コミをご紹介します。
                 </p>
               </div>
@@ -370,8 +384,8 @@ export default function HomePage() {
               ].map((stat) => (
                 <StaggerItem key={stat.value}>
                   <div className="flex flex-col items-center gap-0">
-                    {/* ローレル＋数字 */}
-                    <div className="relative flex items-center justify-center" style={{ width: 240, height: 240 }}>
+                    {/* ローレル＋数字（コンテナをレスポンシブに） */}
+                    <div className="relative flex items-center justify-center w-full aspect-square max-w-[240px]">
                       <Image
                         src="/laurel.png"
                         alt=""
@@ -380,9 +394,9 @@ export default function HomePage() {
                         className="absolute inset-0 w-full h-full object-contain"
                       />
                       {/* 数値 */}
-                      <div className="relative z-10 flex items-end gap-0.5 pb-3">
+                      <div className="relative z-10 flex items-end gap-0.5 pb-[8%]">
                         <span
-                          className="text-7xl font-bold leading-none"
+                          className="text-5xl sm:text-7xl font-bold leading-none"
                           style={{
                             color: "#3d9e8c",
                             fontFamily: "var(--font-lora)",
@@ -392,7 +406,7 @@ export default function HomePage() {
                           {stat.value}
                         </span>
                         <span
-                          className="text-xl font-bold leading-none mb-1"
+                          className="text-base sm:text-xl font-bold leading-none mb-1"
                           style={{
                             color: "#3d9e8c",
                             fontFamily: "var(--font-lora)",
@@ -411,7 +425,7 @@ export default function HomePage() {
                         borderRight: "9px solid transparent",
                         borderBottom: "10px solid #e8e8e8",
                       }} />
-                      <div className="bg-[#e8e8e8] rounded-2xl px-5 py-2.5 text-center text-sm text-[#555] leading-snug whitespace-pre-line">
+                      <div className="bg-[#e8e8e8] rounded-2xl px-3 sm:px-5 py-2.5 text-center text-sm text-[#555] leading-snug whitespace-pre-line">
                         {stat.label}
                       </div>
                     </div>
@@ -423,7 +437,7 @@ export default function HomePage() {
             {/* ③ 利用後の変化カード */}
             <FadeIn direction="up" duration={2.0}>
               <h3
-                className="text-center text-3xl font-bold mb-14"
+                className="text-center text-xl sm:text-3xl font-bold mb-14"
                 style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#4A3068" }}
               >
                 利用後に感じた変化（保護者の声）
@@ -431,7 +445,7 @@ export default function HomePage() {
             </FadeIn>
 
             <StaggerContainer
-              className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8"
+              className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5 mb-4 sm:mb-8"
               staggerDelay={0.55}
             >
               {[
@@ -452,31 +466,36 @@ export default function HomePage() {
                 },
               ].map((card) => (
                 <StaggerItem key={card.title}>
-                  {/* グラデーション外枠 + 白い内側 */}
-                  <div className="rounded-2xl overflow-hidden h-full" style={{ background: card.gradient }}>
-                    {/* タイトル（グラデーション上） */}
-                    <div className="px-6 py-5 text-center">
-                      <p
-                        className="font-bold text-xl"
-                        style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#4A3068" }}
-                      >
-                        {card.title}
-                      </p>
-                    </div>
-                    {/* 白い内側エリア */}
-                    <div className="bg-white mx-3 mb-3 rounded-xl px-6 py-8 flex flex-col items-center gap-6">
-                      {/* 吹き出しアイコン */}
-                      <svg width="48" height="40" viewBox="0 0 48 40" fill="none">
-                        <rect x="1" y="1" width="46" height="28" rx="14" stroke="#4A3068" strokeWidth="1.5" strokeOpacity="0.45" />
-                        <path d="M16 29 L14 39 L26 29" stroke="#4A3068" strokeWidth="1.5" strokeOpacity="0.45" strokeLinejoin="round" strokeLinecap="round" />
-                      </svg>
-                      <ul className="space-y-4 text-center">
-                        {card.items.map((item) => (
-                          <li key={item} className="text-lg leading-relaxed" style={{ color: "#4A3068" }}>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
+                  {/* モバイル：幅を制限して正方形に / PC：高さ自然 */}
+                  <div className="max-w-[220px] mx-auto sm:max-w-none w-full">
+                    <div
+                      className="aspect-square sm:aspect-auto rounded-2xl overflow-hidden h-full flex flex-col"
+                      style={{ background: card.gradient }}
+                    >
+                      {/* タイトル（グラデーション上） */}
+                      <div className="px-3 py-2 sm:px-6 sm:py-5 text-center shrink-0">
+                        <p
+                          className="font-bold text-sm sm:text-xl leading-snug"
+                          style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#4A3068" }}
+                        >
+                          {card.title}
+                        </p>
+                      </div>
+                      {/* 白い内側エリア */}
+                      <div className="bg-white mx-2 mb-2 sm:mx-3 sm:mb-3 rounded-xl flex-1 flex flex-col items-center justify-center gap-2 sm:gap-6 px-3 py-3 sm:px-6 sm:py-8">
+                        {/* 吹き出しアイコン */}
+                        <svg viewBox="0 0 48 40" fill="none" className="w-8 h-[27px] sm:w-12 sm:h-10 shrink-0">
+                          <rect x="1" y="1" width="46" height="28" rx="14" stroke="#4A3068" strokeWidth="1.5" strokeOpacity="0.45" />
+                          <path d="M16 29 L14 39 L26 29" stroke="#4A3068" strokeWidth="1.5" strokeOpacity="0.45" strokeLinejoin="round" strokeLinecap="round" />
+                        </svg>
+                        <ul className="space-y-1.5 sm:space-y-4 text-center">
+                          {card.items.map((item) => (
+                            <li key={item} className="text-xs sm:text-lg leading-snug sm:leading-relaxed" style={{ color: "#4A3068" }}>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </StaggerItem>
@@ -487,7 +506,7 @@ export default function HomePage() {
         </section>
 
         {/* ── 保護者の口コミ（背景なし） ── */}
-        <section className="pt-6 pb-8 px-[5%]">
+        <section className=" px-[5%]">
           <div className="max-w-[1100px] mx-auto">
 
             <FadeIn direction="up" duration={2.0}>
@@ -508,7 +527,7 @@ export default function HomePage() {
 
             {/* 口コミ 横スライダー（スクロールバー非表示） */}
             <div
-              className="overflow-x-auto flex gap-5 pb-4 [&::-webkit-scrollbar]:hidden"
+              className="overflow-x-auto flex gap-5 [&::-webkit-scrollbar]:hidden"
               style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none" }}
             >
               {[
@@ -584,7 +603,7 @@ export default function HomePage() {
             <FadeIn direction="up" duration={2.0}>
               <SectionLabel color="#B3AEDB">HOW TO START</SectionLabel>
               <h2
-                className="text-4xl font-bold mb-16 text-[#231F20]"
+                className="text-2xl sm:text-4xl font-bold mb-16 text-[#231F20]"
                 style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
               >
                 ご利用開始までの流れ
@@ -696,17 +715,17 @@ export default function HomePage() {
             <div className="flex justify-center mt-12">
               <Link
                 href="/flow"
-                className="relative flex items-center justify-center gap-3 px-16 py-6 rounded-full font-bold text-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg border-2 border-[#C9914A] overflow-hidden group"
+                className="relative flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-16 py-4 sm:py-6 rounded-full font-bold text-base sm:text-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg border-2 border-[#C9914A] overflow-hidden group"
                 style={{ boxShadow: "0 4px 20px rgba(201,145,74,0.35)" }}
               >
                 {/* ゴールドグラデーション（ホバーで消える） */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#C9914A] to-[#e0ab6a] transition-opacity duration-300 group-hover:opacity-0" />
                 {/* 白背景（ホバーで現れる） */}
                 <div className="absolute inset-0 bg-white transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
-                <span className="relative z-10 text-white transition-colors duration-300 group-hover:text-[#C9914A]" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+                <span className="relative z-10 whitespace-nowrap text-white transition-colors duration-300 group-hover:text-[#C9914A]" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
                   詳しいご利用の流れはこちら
                 </span>
-                <span className="relative z-10 text-lg text-white transition-colors duration-300 group-hover:text-[#C9914A]">›</span>
+                <span className="relative z-10 text-sm sm:text-lg text-white transition-colors duration-300 group-hover:text-[#C9914A]">›</span>
               </Link>
             </div>
 
