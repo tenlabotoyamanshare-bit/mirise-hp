@@ -2,22 +2,21 @@ import Link from "next/link";
 import Image from "next/image";
 
 const serviceLinks = [
-  { label: "訪問看護について", href: "/services" },
+  { label: "訪問看護について", href: "/#what-we-can-do" },
   { label: "ご利用の流れ", href: "/flow" },
   { label: "ご利用料金", href: "/price" },
-  { label: "対応エリア", href: "/services#area" },
+  { label: "よくあるご質問", href: "/faq" },
 ];
 
 const aboutLinks = [
-  { label: "事業所について", href: "/about" },
-  { label: "代表メッセージ", href: "/about#message" },
+  { label: "ミライズについて", href: "/about" },
+  { label: "代表からのご挨拶", href: "/about#message" },
   { label: "会社概要", href: "/company" },
 ];
 
 const infoLinks = [
-  { label: "よくある質問", href: "/faq" },
-  { label: "採用情報", href: "/recruit" },
   { label: "お問い合わせ", href: "/contact" },
+  { label: "採用情報", href: "/recruit" },
   { label: "プライバシーポリシー", href: "/privacy" },
 ];
 
@@ -79,7 +78,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* 事業所について */}
+          {/* ミライズについて */}
           <div>
             <h4 className="text-[11px] font-bold text-white/70 tracking-widest uppercase mb-4">
               About

@@ -11,13 +11,31 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const navLinks = [
-  { label: "訪問看護について", href: "/services" },
-  { label: "ご利用の流れ", href: "/flow" },
-  { label: "ご利用料金", href: "/price" },
-  { label: "よくある質問", href: "/faq" },
-  { label: "事業所について", href: "/about" },
-  { label: "採用情報", href: "/recruit" },
+const menuSections = [
+  {
+    label: null,
+    links: [
+      { label: "訪問看護について", href: "/#what-we-can-do" },
+      { label: "ご利用の流れ", href: "/flow" },
+      { label: "ご利用料金", href: "/price" },
+      { label: "よくあるご質問", href: "/faq" },
+    ],
+  },
+  {
+    label: "ミライズについて",
+    links: [
+      { label: "ミライズについて", href: "/about" },
+      { label: "代表からのご挨拶", href: "/about#message" },
+      { label: "会社概要", href: "/company" },
+    ],
+  },
+  {
+    label: null,
+    links: [
+      { label: "お問い合わせ", href: "/contact" },
+      { label: "採用情報", href: "/recruit" },
+    ],
+  },
 ];
 
 export function Header() {
@@ -95,47 +113,63 @@ export function Header() {
             </svg>
           </SheetTrigger>
 
-          <SheetContent side="right" className="w-[280px] px-6 pt-8">
-            <SheetHeader className="mb-8">
+          <SheetContent
+            side="right"
+            className="w-full sm:w-[75vw] p-0 overflow-y-auto"
+            style={{ background: "linear-gradient(160deg, #fdf2fa 0%, #edf6ff 100%)" }}
+          >
+
+            {/* ── ヘッダー（ロゴ） ── */}
+            <SheetHeader className="px-8 sm:px-12 py-8 border-b border-[#efefef]">
               <SheetTitle className="text-left">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <Image
                     src="/logo.png"
                     alt="MIRISEロゴ"
-                    width={36}
-                    height={36}
-                    className="h-9 w-auto"
+                    width={48}
+                    height={48}
+                    className="h-12 w-auto"
                   />
-                  <span className="text-sm font-bold text-[#231F20]">
-                    ミライズ訪問看護
+                  {/* PCのみテキスト表示 */}
+                  <span
+                    className="hidden sm:block text-base font-bold text-[#231F20]"
+                    style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+                  >
+                    ミライズ訪問看護ステーション
                   </span>
                 </div>
               </SheetTitle>
             </SheetHeader>
-            <nav className="flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-sm text-[#231F20] hover:text-[#EC99D0] py-3 px-2 border-b border-[#f0f0f0] transition-colors font-medium"
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="mt-6">
-                <Link
-                  href="/contact"
-                  onClick={() => setOpen(false)}
-                  className="w-full flex items-center justify-center h-10 rounded-full text-white text-sm font-bold transition-opacity hover:opacity-90"
-                  style={{
-                    background: "linear-gradient(120deg, #EC99D0, #B3AEDB)",
-                  }}
-                >
-                  お問い合わせ
-                </Link>
+
+            {/* ── ナビゲーション ── */}
+            <nav className="px-8 sm:px-12 py-10" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+              {/* PC：3列グリッド / スマホ：1列 */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 sm:gap-10">
+                {menuSections.map((section, si) => (
+                  <div
+                    key={si}
+                    className={
+                      si > 0
+                        ? /* スマホのみ：上に濃い区切り線 */
+                          "mt-2 pt-6 border-t-2 border-[#c8c8c8] sm:border-0 sm:mt-0 sm:pt-0"
+                        : ""
+                    }
+                  >
+                    {section.links.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className="block text-base text-[#231F20] hover:text-[#EC99D0] py-4 border-b border-[#efefef] transition-colors font-medium leading-snug"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                ))}
               </div>
             </nav>
+
           </SheetContent>
         </Sheet>
       </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP, Zen_Maru_Gothic, Lora } from "next/font/google";
+import { Noto_Sans_JP, Noto_Serif_JP, Zen_Maru_Gothic, Lora, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -32,6 +32,14 @@ const lora = Lora({
   display: "swap",
 });
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  style: ["italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "訪問看護ステーションミライズ",
@@ -55,7 +63,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${zenMaruGothic.variable} ${lora.variable}`}
+      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${zenMaruGothic.variable} ${lora.variable} ${cormorant.variable}`}
     >
       <body className="font-[var(--font-noto-sans-jp)] antialiased text-[#231F20] min-h-screen flex flex-col">
         {/* ── 水彩固定背景 ── */}
