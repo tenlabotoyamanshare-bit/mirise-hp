@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { ApplicationForm } from "@/components/recruit/ApplicationForm";
 
@@ -480,23 +481,20 @@ export default function RecruitPage() {
             >
               募集要項
             </h2>
-            <ul className="space-y-4 pl-1">
+            <ul className="grid grid-cols-[max-content_1fr] gap-x-4 sm:gap-x-10 gap-y-4 sm:gap-y-5 items-baseline">
               {requirements.map((row) => (
-                <li
-                  key={row.label}
-                  className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-6"
-                >
+                <Fragment key={row.label}>
                   <span
-                    className="flex-shrink-0 sm:w-36 font-bold text-base sm:text-lg text-[#231F20] flex items-start gap-2"
+                    className="font-bold text-base sm:text-lg text-[#c9559e] whitespace-nowrap flex items-baseline gap-1.5"
                     style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
                   >
-                    <span className="text-[#c9559e] leading-7">•</span>
-                    {row.label}：
+                    <span aria-hidden>•</span>
+                    {row.label}
                   </span>
                   <span className="text-base sm:text-lg text-[#4a4a4a] leading-7">
                     {row.value}
                   </span>
-                </li>
+                </Fragment>
               ))}
             </ul>
           </FadeIn>
@@ -526,13 +524,15 @@ export default function RecruitPage() {
 
           {/* ── 応募フォーム ── */}
           <FadeIn direction="up" duration={1.6} delay={0.2}>
-            <h2
-              className="text-2xl sm:text-3xl font-bold mb-6"
-              style={{ ...H1_GRADIENT, fontFamily: "var(--font-zen-maru-gothic)" }}
-            >
-              応募フォーム
-            </h2>
-            <ApplicationForm />
+            <div id="apply-form" className="scroll-mt-[120px]">
+              <h2
+                className="text-2xl sm:text-3xl font-bold mb-6"
+                style={{ ...H1_GRADIENT, fontFamily: "var(--font-zen-maru-gothic)" }}
+              >
+                応募フォーム
+              </h2>
+              <ApplicationForm />
+            </div>
           </FadeIn>
 
         </div>

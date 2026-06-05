@@ -1,129 +1,84 @@
 import type { Metadata } from "next";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import Link from "next/link";
+import { FadeIn } from "@/components/ui/fade-in";
+import { FaqAccordion } from "@/components/faq/FaqAccordion";
 
 export const metadata: Metadata = {
   title: "よくあるご質問",
   description:
-    "訪問看護ステーションミライズへのよくあるご質問をまとめました。料金・対応エリア・利用方法などご不明な点はお気軽にお問い合わせください。",
+    "訪問看護ステーションミライズによくお寄せいただくご質問とその回答をまとめました。",
 };
 
-const faqs = [
-  {
-    category: "ご利用について",
-    items: [
-      {
-        q: "どのような方が対象ですか？",
-        a: "子ども（乳幼児〜高校生）から大人まで幅広く対応しています。医療的ケアが必要な方、発達障害・精神疾患をお持ちの方、高齢で在宅療養中の方など、詳しくはお問い合わせください。",
-      },
-      {
-        q: "訪問看護を利用するにはどうすればいいですか？",
-        a: "まずはお電話・メール・LINEでお問い合わせください。面談・サービス提案・医師の指示書取得を経てサービスを開始します。",
-      },
-      {
-        q: "主治医がいない場合でも利用できますか？",
-        a: "訪問看護には主治医の指示書が必要です。かかりつけ医がいない場合でも、当ステーションでご案内しますのでご相談ください。",
-      },
-    ],
-  },
-  {
-    category: "料金について",
-    items: [
-      {
-        q: "料金はどのくらいかかりますか？",
-        a: "保険の種類によって異なります。介護保険・医療保険を利用の場合は自己負担1〜3割です。詳しくはご利用料金ページをご覧ください。",
-      },
-      {
-        q: "子どもの場合、費用負担はどのくらいですか？",
-        a: "大阪府内では子ども医療費助成制度が適用され、1回あたり500円（月上限1,000円）となる場合があります。",
-      },
-    ],
-  },
-  {
-    category: "サービス内容",
-    items: [
-      {
-        q: "夜間・休日でも対応してもらえますか？",
-        a: "はい、24時間365日対応しています。緊急時にも迅速に対応できる体制を整えています。",
-      },
-      {
-        q: "1回の訪問はどのくらいの時間ですか？",
-        a: "基本的に30分〜1時間程度ですが、ご状態やプランによって異なります。担当スタッフと相談しながら決定します。",
-      },
-      {
-        q: "看護師以外のスタッフも訪問しますか？",
-        a: "はい、必要に応じて理学療法士・作業療法士・言語聴覚士などの専門職が訪問し、包括的な支援を行います。",
-      },
-    ],
-  },
-];
+const MAIN = "#7B6BBE";
 
 export default function FaqPage() {
   return (
     <div>
-      {/* ─── ページヘッダー ─── */}
-      <section
-        className="py-20 px-[5%] text-center"
-        style={{ background: "linear-gradient(160deg, #fff 0%, #f0f7fe 100%)" }}
-      >
-        <p className="text-xs font-bold tracking-widest text-[#84D3F4] mb-3">FAQ</p>
-        <h1 className="font-[var(--font-noto-serif-jp)] text-4xl font-light text-[#231F20] mb-4">
-          よくあるご質問
-        </h1>
-        <p className="text-sm text-[#6b6b6b] leading-loose max-w-xl mx-auto">
-          よくいただくご質問をまとめました。解決しない場合はお気軽にお問い合わせください。
-        </p>
-      </section>
-
-      {/* ─── FAQ アコーディオン ─── */}
-      <section className="py-20 px-[5%] bg-white">
-        <div className="max-w-[800px] mx-auto space-y-12">
-          {faqs.map((category) => (
-            <div key={category.category}>
-              <h2 className="text-sm font-bold text-[#231F20] mb-4 pb-2 border-b-2 border-[#EC99D0]/30">
-                {category.category}
-              </h2>
-              <Accordion multiple={false} className="space-y-2">
-                {category.items.map((item, i) => (
-                  <AccordionItem
-                    key={i}
-                    value={`${category.category}-${i}`}
-                    className="border border-[#f0f0f0] rounded-xl px-4 bg-white shadow-sm"
-                  >
-                    <AccordionTrigger className="text-sm font-medium text-[#231F20] hover:no-underline">
-                      <span className="flex items-start gap-3 text-left">
-                        <span className="shrink-0 w-6 h-6 rounded flex items-center justify-center text-xs font-bold text-white mt-0.5"
-                          style={{ background: "linear-gradient(135deg, #EC99D0, #B3AEDB)" }}>
-                          Q
-                        </span>
-                        {item.q}
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-sm text-[#6b6b6b] leading-loose pl-9">
-                      {item.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          ))}
+      {/* ════════ ヘッダー：水彩背景を見せる帯 ════════ */}
+      <section className="px-[5%] pt-12 sm:pt-20 pb-20 sm:pb-28">
+        <div className="max-w-[1000px] mx-auto">
+          <FadeIn direction="up" duration={1.6}>
+            <h1
+              className="text-3xl sm:text-5xl font-bold text-[#3a3a3a] leading-[1.4]"
+              style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+            >
+              よくあるご質問
+            </h1>
+          </FadeIn>
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
-      <section className="py-16 px-[5%] text-center bg-[#f7f7f7]">
-        <p className="text-sm text-[#6b6b6b] mb-6">
-          解決しないご質問はお気軽にお問い合わせください
-        </p>
-        <a href="/contact" className="inline-block px-8 py-4 rounded-full text-white font-bold transition-transform hover:-translate-y-1"
-          style={{ background: "linear-gradient(120deg, #EC99D0, #B3AEDB)", boxShadow: "0 6px 24px rgba(236,153,208,0.4)" }}>
-          お問い合わせ・無料相談
-        </a>
-      </section>
+      {/* ════════ 本文：白背景を重ねる ════════ */}
+      <div className="relative z-10 bg-white rounded-t-[40px] -mt-6 shadow-[0_-10px_30px_rgba(0,0,0,0.04)]">
+        <section className="px-[5%] pt-16 sm:pt-20 pb-28 sm:pb-36">
+          <div className="max-w-[820px] mx-auto">
+            <FadeIn direction="up" duration={1.4}>
+              <p className="text-base sm:text-lg text-[#5a5a5a] leading-relaxed mb-10">
+                ご利用を検討されている方からよくいただくご質問をまとめました。気になる項目をタップすると回答がご覧いただけます。
+              </p>
+            </FadeIn>
+
+            <FadeIn direction="up" duration={1.4} delay={0.05}>
+              <FaqAccordion />
+            </FadeIn>
+
+            {/* 解決しない場合のCTA */}
+            <FadeIn direction="up" duration={1.4} delay={0.1}>
+              <div className="mt-16 rounded-2xl bg-white px-6 sm:px-10 py-10 text-center shadow-[0_2px_12px_rgba(0,0,0,0.05)]">
+                <p
+                  className="text-lg sm:text-xl font-bold text-[#231F20] mb-3"
+                  style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+                >
+                  解決しない場合は、お気軽にお問い合わせください
+                </p>
+                <p className="text-base text-[#5a5a5a] leading-relaxed mb-7">
+                  ご不明な点やご相談は、公式LINEまたはお問い合わせフォームよりお寄せください。
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-[560px] mx-auto">
+                  <a
+                    href="#"
+                    className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-white font-bold text-lg shadow-sm hover:opacity-90 transition-opacity"
+                    style={{ background: "#06C755", fontFamily: "var(--font-zen-maru-gothic)" }}
+                  >
+                    公式LINEから問い合わせ
+                  </a>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-bold text-lg border-2 bg-white transition-colors hover:bg-[#f5f3fb]"
+                    style={{
+                      color: MAIN,
+                      borderColor: MAIN,
+                      fontFamily: "var(--font-zen-maru-gothic)",
+                    }}
+                  >
+                    お問い合わせフォーム
+                  </Link>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
