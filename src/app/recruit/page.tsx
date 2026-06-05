@@ -52,7 +52,7 @@ const requirements = [
 ];
 
 /* 応募方法（番号リスト） */
-const applySteps = [
+const applySteps: { text: string; note?: string }[] = [
   { text: "LINE公式アカウント または 下記応募フォームからご連絡ください" },
   { text: "採用担当より、面接・見学のご案内をいたします" },
 ];
