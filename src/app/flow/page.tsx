@@ -15,6 +15,7 @@ import {
   Mail,
   type LucideIcon,
 } from "lucide-react";
+import { LINE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "ご利用までの流れ",
@@ -295,7 +296,7 @@ export default function FlowPage() {
                         {/* お問い合わせボタン（PC：右／スマホ：下） */}
                         <div className="order-2 flex flex-col gap-4 lg:w-[300px] shrink-0 lg:justify-center">
                           <a
-                            href="#"
+                            href={LINE_URL}
                             className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-white font-bold text-lg shadow-sm hover:opacity-90 transition-opacity"
                             style={{ background: "#06C755", fontFamily: "var(--font-zen-maru-gothic)" }}
                           >
@@ -361,7 +362,7 @@ export default function FlowPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-[640px] mx-auto">
                   <a
-                    href="#"
+                    href={LINE_URL}
                     className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-white font-bold text-lg shadow-sm hover:opacity-90 transition-opacity"
                     style={{ background: "#06C755", fontFamily: "var(--font-zen-maru-gothic)" }}
                   >

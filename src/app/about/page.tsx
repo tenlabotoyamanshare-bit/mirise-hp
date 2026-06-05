@@ -278,7 +278,7 @@ export default function AboutPage() {
       {/* ══════════════════════════════
           会社概要
       ══════════════════════════════ */}
-      <section className="py-0 px-[5%] bg-white/70">
+      <section id="company" className="py-0 px-[5%] bg-white/70 scroll-mt-[100px]">
         <div className="max-w-[900px] mx-auto py-20">
 
           {/* モザイクヘッダー */}

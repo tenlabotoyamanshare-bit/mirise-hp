@@ -26,7 +26,7 @@ const menuSections = [
     links: [
       { label: "ミライズについて", href: "/about" },
       { label: "代表からのご挨拶", href: "/about#message" },
-      { label: "会社概要", href: "/company" },
+      { label: "会社概要", href: "/about#company" },
     ],
   },
   {

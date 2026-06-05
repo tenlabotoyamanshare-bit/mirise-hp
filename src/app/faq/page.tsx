@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FadeIn } from "@/components/ui/fade-in";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
+import { LINE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "よくあるご質問",
@@ -56,7 +57,7 @@ export default function FaqPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-[560px] mx-auto">
                   <a
-                    href="#"
+                    href={LINE_URL}
                     className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-white font-bold text-lg shadow-sm hover:opacity-90 transition-opacity"
                     style={{ background: "#06C755", fontFamily: "var(--font-zen-maru-gothic)" }}
                   >

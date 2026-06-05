@@ -11,7 +11,7 @@ const serviceLinks = [
 const aboutLinks = [
   { label: "ミライズについて", href: "/about" },
   { label: "代表からのご挨拶", href: "/about#message" },
-  { label: "会社概要", href: "/company" },
+  { label: "会社概要", href: "/about#company" },
 ];
 
 const infoLinks = [
@@ -130,7 +130,7 @@ export function Footer() {
               プライバシーポリシー
             </Link>
             <Link
-              href="/company"
+              href="/about#company"
               className="text-[11px] text-white/25 hover:text-white/50 transition-colors"
             >
               会社概要

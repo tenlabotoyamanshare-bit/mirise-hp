@@ -140,7 +140,7 @@ export function HeroSection() {
               [
                 { href: "#worries",         label: ["こんなお悩み", "ありませんか？"], color: "#EC99D0", delay: 0.25 },
                 { href: "#what-we-can-do",  label: ["訪問看護でできること"],          color: "#B3AEDB", delay: 0.5  },
-                { href: "#about",           label: ["ミライズについて"],              color: "#84D3F4", delay: 0.75 },
+                { href: "/about",           label: ["ミライズについて"],              color: "#84D3F4", delay: 0.75 },
               ] as const
             ).map(({ href, label, color, delay }) => (
               <motion.a
@@ -178,7 +178,7 @@ export function HeroSection() {
               [
                 { href: "#worries",        label: ["こんなお悩みありませんか？"], color: "#EC99D0", delay: 0.25 },
                 { href: "#what-we-can-do", label: ["訪問看護でできること"],          color: "#B3AEDB", delay: 0.5  },
-                { href: "#about",          label: ["ミライズについて"],              color: "#84D3F4", delay: 0.75 },
+                { href: "/about",          label: ["ミライズについて"],              color: "#84D3F4", delay: 0.75 },
               ] as const
             ).map(({ href, label, color, delay }) => (
               <motion.a
