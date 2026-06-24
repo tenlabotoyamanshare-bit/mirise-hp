@@ -61,7 +61,7 @@ export function HeroSection() {
               <span className="text-3xl sm:text-5xl font-medium text-[#231F20]">
                 訪問看護ステーション
               </span>
-              <span className="text-5xl sm:text-6xl font-medium text-[#231F20]">
+              <span className="text-5xl sm:text-5xl font-medium text-[#231F20]">
                 ミライズ
               </span>
             </motion.h1>
@@ -122,13 +122,13 @@ export function HeroSection() {
               className="text-base font-bold tracking-[0.25em] text-[#B3AEDB]"
               style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
             >
-              乳幼児・小児・成人まで
+              未就学児から成人まで
             </p>
             <p
               className="text-sm text-[#7a7a7a] leading-loose tracking-wide"
               style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
             >
-              精神・知的障害のある方とそのご家族に寄り添い、
+              発達障害・精神・知的障害のある方とそのご家族に寄り添い、
               <br />
               自宅で受けられる専門的なケアを富山でお届けします。
             </p>

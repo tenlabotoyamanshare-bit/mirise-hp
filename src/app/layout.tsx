@@ -66,23 +66,25 @@ export default function RootLayout({
       className={`${notoSansJP.variable} ${notoSerifJP.variable} ${zenMaruGothic.variable} ${lora.variable} ${cormorant.variable}`}
     >
       <body className="font-[var(--font-noto-sans-jp)] antialiased text-[#231F20] min-h-screen flex flex-col">
-        {/* ── 水彩固定背景 ── */}
+        {/* ── 背景：白〜薄紫のやわらかいグラデーション（デザインコンセプト基調） ── */}
         <div
           className="fixed inset-0 pointer-events-none select-none"
           style={{
-            backgroundImage: "url('/watercolor-bg.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            background: "linear-gradient(180deg, #FFFFFF 0%, #FBF8FF 42%, #F4EEFF 100%)",
             zIndex: -2,
           }}
         />
-        {/* ── 白オーバーレイ（背景のみ） ── */}
+        {/* ── 上部にほんのり虹のにじみ ── */}
         <div
-          className="fixed inset-0 pointer-events-none select-none"
-          style={{ backgroundColor: "rgba(255,255,255,0.55)", zIndex: -1 }}
+          className="fixed inset-x-0 top-0 h-[55vh] pointer-events-none select-none"
+          style={{
+            background:
+              "radial-gradient(120% 80% at 80% 0%, rgba(255,216,241,0.30), rgba(205,232,255,0.18) 45%, rgba(223,248,238,0) 70%)",
+            zIndex: -1,
+          }}
         />
         <Header />
-        <main className="flex-1 pt-[100px]">{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>
