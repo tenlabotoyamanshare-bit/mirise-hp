@@ -52,10 +52,10 @@ export function Footer() {
               </div>
             </div>
             <address className="not-italic text-[13px] leading-loose text-white/50">
-              〒XXX-XXXX<br />
-              大阪府○○市○○町X-X-X<br />
-              TEL: 0X-XXXX-XXXX<br />
-              受付時間: 9:00〜18:00（緊急時24h対応）
+              合同会社ライフケアステーション富山<br />
+              〒939-8071 富山県富山市上袋650<br />
+              サンコレクトG.SECONDビル2階204号室<br />
+              TEL: 076-461-3501　FAX: 076-461-3502
             </address>
           </div>
 

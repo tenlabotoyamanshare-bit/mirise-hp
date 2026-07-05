@@ -59,7 +59,7 @@ export default function PrivacyPage() {
             {
               title: "7. お問い合わせ",
               content:
-                "プライバシーポリシーに関するお問い合わせは、下記窓口までご連絡ください。\n訪問看護ステーションミライズ　個人情報相談窓口\nTEL: 0X-XXXX-XXXX（平日 9:00〜18:00）",
+                "プライバシーポリシーに関するお問い合わせは、下記窓口までご連絡ください。\n訪問看護ステーションミライズ　個人情報相談窓口\nTEL: 076-461-3501（平日 9:00〜18:00）",
             },
           ].map((section) => (
             <div key={section.title} className="mb-8">

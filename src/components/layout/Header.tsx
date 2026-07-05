@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -34,10 +35,24 @@ const menuRight = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [menuHovered, setMenuHovered] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // インラインナビを出すページ（トップ／訪問看護を知る）だけ true
+  const isNavPage = pathname === "/" || pathname === "/knowledge" || pathname === "/knowledge/";
+  // 未スクロール かつ 対象ページ のときだけナビ表示（それ以外・スクロール時はハンバーガーのみ）
+  const showNav = isNavPage && !scrolled;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-[100px] flex items-center px-[5%]">
-      <div className="flex items-center justify-between w-full max-w-[1200px] mx-auto">
+    <header className="fixed top-0 left-0 right-0 z-50 h-[100px] flex items-center px-5 sm:px-8">
+      <div className="flex items-center justify-between w-full">
         {/* ロゴ */}
         <Link href="/" className="flex items-center gap-3 shrink-0">
           <Image
@@ -55,14 +70,46 @@ export function Header() {
           </p>
         </Link>
 
-        {/* ── ハンバーガーメニュー（常に表示） ── */}
+        {/* ── 右側：インラインナビ（トップ表示）＋ハンバーガー（スクロール時） ── */}
+        <div className="flex items-center gap-4 sm:gap-6">
+          {/* インラインナビ：TOP / 訪問看護を知る / 働きたい方へ / お問い合わせ（PC・対象ページ・トップ時のみ） */}
+          <nav
+            className={`hidden lg:flex items-center gap-5 xl:gap-7 transition-all duration-500 ease-out ${
+              showNav ? "lg:opacity-100 lg:translate-y-0" : "lg:opacity-0 lg:-translate-y-1 lg:pointer-events-none"
+            }`}
+            style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+          >
+            <Link href="/" className="text-lg font-bold text-[#3a3a3a] hover:text-[#8263C3] transition-colors">
+              TOP
+            </Link>
+            <Link href="/knowledge" className="text-lg font-bold text-[#3a3a3a] hover:text-[#8263C3] transition-colors">
+              訪問看護を知る
+            </Link>
+            <Link
+              href="/recruit"
+              className="inline-flex items-center justify-center h-14 px-8 rounded-full text-white font-bold text-base shadow-[0_10px_26px_rgba(201,145,74,0.30)] transition-all duration-300 hover:-translate-y-0.5"
+              style={{ background: "linear-gradient(135deg, #E0A85E, #C9914A)" }}
+            >
+              働きたい方へ
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center h-14 px-8 rounded-full text-white font-bold text-base shadow-[0_10px_26px_rgba(150,130,210,0.30)] transition-all duration-300 hover:-translate-y-0.5"
+              style={{ backgroundImage: "var(--brand-gradient)" }}
+            >
+              お問い合わせ
+            </Link>
+          </nav>
+
+          {/* ── ハンバーガーメニュー（常に表示） ── */}
+          <div className="block">
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
             render={
               <button
                 className="relative inline-flex items-center justify-center h-14 w-14 rounded-xl overflow-hidden"
                 style={{
-                  background: "linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #EC99D0, #B3AEDB, #84D3F4) border-box",
+                  background: "linear-gradient(135deg, #EC99D0, #B3AEDB, #84D3F4) padding-box, linear-gradient(135deg, #EC99D0, #B3AEDB, #84D3F4) border-box",
                   border: "2.5px solid transparent",
                 }}
                 onMouseEnter={() => setMenuHovered(true)}
@@ -75,7 +122,7 @@ export function Header() {
             <span
               className="absolute inset-0 pointer-events-none transition-opacity duration-700"
               style={{
-                background: "linear-gradient(135deg, #EC99D0, #B3AEDB, #84D3F4)",
+                background: "#ffffff",
                 opacity: menuHovered ? 1 : 0,
               }}
             />
@@ -88,12 +135,12 @@ export function Header() {
                   <stop offset="100%" stopColor="#84D3F4" />
                 </linearGradient>
               </defs>
-              <g style={{ opacity: menuHovered ? 0 : 1, transition: "opacity 0.7s ease" }}>
+              <g style={{ opacity: menuHovered ? 1 : 0, transition: "opacity 0.7s ease" }}>
                 <rect y="0"    width="28" height="2.5" rx="1.25" fill="url(#menuGrad)" />
                 <rect y="8.75" width="28" height="2.5" rx="1.25" fill="url(#menuGrad)" />
                 <rect y="17.5" width="28" height="2.5" rx="1.25" fill="url(#menuGrad)" />
               </g>
-              <g style={{ opacity: menuHovered ? 1 : 0, transition: "opacity 0.7s ease" }}>
+              <g style={{ opacity: menuHovered ? 0 : 1, transition: "opacity 0.7s ease" }}>
                 <rect y="0"    width="28" height="2.5" rx="1.25" fill="white" />
                 <rect y="8.75" width="28" height="2.5" rx="1.25" fill="white" />
                 <rect y="17.5" width="28" height="2.5" rx="1.25" fill="white" />
@@ -190,6 +237,8 @@ export function Header() {
             </nav>
           </SheetContent>
         </Sheet>
+          </div>
+        </div>
       </div>
     </header>
   );

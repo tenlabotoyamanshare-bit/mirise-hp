@@ -27,7 +27,15 @@ const COLS =
 
 export default function PricePage() {
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: "linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)), url('/watercolor-bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center top",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* ════════ ヘッダー：水彩背景を見せる帯 ════════ */}
       <section className="px-[5%] pt-12 sm:pt-20 pb-20 sm:pb-28">
         <div className="max-w-[1000px] mx-auto">

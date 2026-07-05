@@ -94,6 +94,40 @@
   --mirise-black:     #231F20;
   --mirise-gray:      #6b6b6b;
   --mirise-lgray:     #f7f7f7;
+
+  /* ブランドグラデーション（サイト共通） */
+  --brand-gradient: linear-gradient(90deg, #F58BC8 0%, #E48DEB 20%, #C993FF 45%, #A3A9FF 70%, #7CBFFF 88%, #62C5FF 100%);
+}
+
+@layer components {
+  /* テキストにブランドグラデーションを適用（background-clip:text） */
+  .brand-text {
+    background-image: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* 共通ブランドボタン */
+  .brand-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    height: 56px;
+    padding: 0 2.25rem;
+    border-radius: 9999px;
+    background-image: var(--brand-gradient);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 12px 30px rgba(143, 155, 255, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  }
+  .brand-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow: 0 18px 40px rgba(143, 155, 255, 0.35);
+  }
 }
 
 .dark {

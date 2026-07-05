@@ -9,10 +9,10 @@ import {
 } from "@/components/ui/dialog";
 
 /* ミライズの情報が入る部分（後で差し替え） */
-const STATION_NAME = "（事業所名を記入）";
-const COMPANY_NAME = "（会社名を記入）";
+const STATION_NAME = "訪問看護ステーション ミライズ";
+const COMPANY_NAME = "合同会社ライフケアステーション富山";
 const CONTACT_PERSON = "（担当者名を記入）";
-const CONTACT_TEL = "（電話番号を記入）";
+const CONTACT_TEL = "076-461-3501";
 const CONTACT_EMAIL = "（メールアドレスを記入）";
 
 /** 記入待ちのプレースホルダー表示 */

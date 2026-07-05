@@ -100,12 +100,13 @@ const messageBlocks = [
    会社概要 テーブルデータ
 ───────────────────────────────────────── */
 const companyRows = [
-  { label: "法人名", value: "○○合同会社" },
+  { label: "法人名", value: "合同会社ライフケアステーション富山" },
   { label: "事業所名", value: "訪問看護ステーション ミライズ" },
-  { label: "所在地", value: "〒XXX-XXXX\n富山県富山市○○X-X-X" },
-  { label: "設立", value: "20XX年XX月XX日" },
-  { label: "代表者", value: "○○ ○○" },
-  { label: "電話番号", value: "0XX-XXXX-XXXX" },
+  { label: "所在地", value: "〒939-8071\n富山県富山市上袋650 サンコレクトG.SECONDビル2階204号室" },
+  { label: "設立", value: "2024年12月" },
+  { label: "代表者", value: "庄司正樹" },
+  { label: "電話番号", value: "076-461-3501" },
+  { label: "FAX", value: "076-461-3502" },
   { label: "受付時間", value: "9:00〜18:00（緊急時24時間対応）" },
   { label: "事業内容", value: "訪問看護ステーションの運営" },
   { label: "対応エリア", value: "富山市およびその周辺地域" },
@@ -124,7 +125,15 @@ const mosaicColors = [
 ───────────────────────────────────────── */
 export default function AboutPage() {
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: "linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)), url('/watercolor-bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center top",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
 
       {/* ══════════════════════════════
           HERO — 背景なし・タイトルのみ
@@ -209,18 +218,18 @@ export default function AboutPage() {
 
               {/* テキスト情報 */}
               <div className="flex-1 text-center sm:text-left">
-                <p className="text-sm text-[#6b6b6b] mb-1">管理者 / 看護師</p>
+                <p className="text-sm text-[#6b6b6b] mb-1">代表者 / 理学療法士</p>
                 <p
                   className="text-3xl sm:text-4xl font-bold text-[#231F20] mb-1"
                   style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
                 >
-                  （代表者名）
+                  庄司 正樹
                 </p>
                 <p
                   className="text-sm text-[#aaa] mb-8 italic"
                   style={{ fontFamily: "var(--font-lora)" }}
                 >
-                  （ローマ字）
+                  Masaki Shoji
                 </p>
                 <p
                   className="text-xs font-bold tracking-widest text-[#B3AEDB] mb-3"
@@ -230,9 +239,8 @@ export default function AboutPage() {
                 </p>
                 <ol className="space-y-2 text-left">
                   {[
-                    "（経歴1　例：〇〇病院 勤務 2015年〜2020年）",
-                    "（経歴2　例：〇〇法人 勤務 2020年〜2023年）",
-                    "訪問看護ステーション ミライズ 開設・管理者（202○年○月〜）",
+                    "理学療法士として、デイサービス・療養病棟・認知症・精神科病棟にて10年以上にわたり勤務",
+                    "2024年12月に訪問看護ステーション「ミライズ」を設立",
                   ].map((career, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-[#4a4a4a] leading-relaxed">
                       <span className="flex-shrink-0 font-bold text-xs mt-0.5" style={{ color: "#B3AEDB" }}>

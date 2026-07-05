@@ -17,7 +17,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 /* ポエム：一部の語を色付け */
 const poemLines: { t: string; c?: string }[][] = [
   [{ t: "大丈夫。" }],
-  [{ t: "ひとりで背負わなくて、" }],
+  [{ t: "ひとりで背負わなくて" }],
   [{ t: "いいんですよ。" }],
 ];
 
@@ -30,7 +30,7 @@ const badges = [
 
 export function HomeHero() {
   return (
-    <section className="relative min-h-[calc(100vh-100px)] lg:min-h-[820px] flex items-start overflow-hidden px-[5%] py-12 sm:pt-16 lg:pt-20 pb-0 mb-24">
+    <section className="relative min-h-[calc(100vh-100px)] lg:min-h-[820px] flex items-start overflow-hidden px-[5%] py-12 sm:pt-16 lg:pt-20 pb-16 lg:pb-0 mb-24">
 
       {/* ══════ 背景装飾：虹のかけら・光の粒・星・グラデの丸 ══════ */}
       <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -50,12 +50,12 @@ export function HomeHero() {
         </svg>
       </div>
 
-      {/* ══════ 右奥のイラスト（Z軸を下げて背面・右詰・大きめ） ══════ */}
+      {/* ══════ 右奥のイラスト（PCのみ・背面・右詰・大きめ／モバイルは文章下にブロック配置） ══════ */}
       <motion.div
-        className="absolute z-0 top-[2%] sm:top-[2%] right-0 lg:right-[2%] pointer-events-none"
+        className="hidden lg:block absolute z-0 top-[2%] sm:top-[2%] right-0 lg:right-[2%] pointer-events-none"
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.8, delay: 0.5, ease: EASE }}
+        transition={{ duration: 1.8, delay: 3.2, ease: EASE }}
       >
         <Image
           src="/hero-visual.png"
@@ -67,24 +67,24 @@ export function HomeHero() {
         />
       </motion.div>
 
-      {/* ══════ 山と雲（ヒーロー右下） ══════ */}
+      {/* ══════ 山と雲（ヒーロー右下・PCのみ） ══════ */}
       <motion.div
         aria-hidden
-        className="absolute z-0 -bottom-4 -right-16 pointer-events-none"
+        className="hidden lg:block absolute z-0 -bottom-8 -right-16 pointer-events-none"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.8, delay: 0.7, ease: EASE }}
+        transition={{ duration: 1.8, delay: 3.2, ease: EASE }}
       >
         <Image src="/mountain-cloud.png" alt="" width={1200} height={520} className="w-[min(76vw,800px)] h-auto" />
       </motion.div>
 
-      {/* ══════ 雲＋ラベンダーの装飾（ポエム下・左下） ══════ */}
+      {/* ══════ 雲＋ラベンダーの装飾（ポエム下・左下・PCのみ） ══════ */}
       <motion.div
         aria-hidden
-        className="absolute z-0 bottom-4 left-0 w-[min(54vw,760px)] pointer-events-none"
+        className="hidden lg:block absolute z-0 bottom-4 left-0 w-[min(54vw,760px)] pointer-events-none"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.6, delay: 1.0, ease: EASE }}
+        transition={{ duration: 1.6, delay: 3.2, ease: EASE }}
       >
         <Image src="/cloud-decor.png" alt="" width={1200} height={520} className="w-full h-auto" />
       </motion.div>
@@ -93,7 +93,7 @@ export function HomeHero() {
       <div className="relative z-10 w-full max-w-[1100px] mx-auto">
         <div className="max-w-[720px]">
           <h1
-            className="font-bold text-[#231F20] leading-[1.7] text-[2rem] sm:text-[3.4rem] sm:whitespace-nowrap"
+            className="font-bold text-[#231F20] leading-[1.7] text-[2rem] sm:text-[3.9rem] sm:whitespace-nowrap"
             style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
           >
             {poemLines.map((line, i) => (
@@ -102,7 +102,7 @@ export function HomeHero() {
                 className="block"
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.6, delay: 0.4 + i * 0.5, ease: EASE }}
+                transition={{ duration: 1.8, delay: 0.4 + i * 0.9, ease: EASE }}
               >
                 {line.map((seg, k) => (
                   <span key={k} style={seg.c ? { color: seg.c } : undefined}>
@@ -114,18 +114,36 @@ export function HomeHero() {
           </h1>
 
           <motion.p
-            className="mt-8 text-base sm:text-lg text-[#5a5a5a] leading-loose max-w-lg"
+            className="mt-8 text-xs sm:text-lg text-[#5a5a5a] leading-loose max-w-lg"
             style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.6, delay: 2.0, ease: EASE }}
+            transition={{ duration: 1.6, delay: 3.2, ease: EASE }}
           >
-            ご本人・ご家族、そしてお子様の「自分らしい未来」を、
-            <br className="hidden sm:block" />
+            ご本人・ご家族、そしてお子様の
+            <br className="lg:hidden" />
+            「自分らしい未来」を、
+            <br />
             富山で、ミライズがそばで支えます。
           </motion.p>
 
-          {/* 3つの円バッジ（アイコンは後で差し替え） */}
+          {/* モバイル：ヒーローのシーン（hero-visual＋mountain-cloud＋cloud-decor を同じ位置関係で配置） */}
+          <motion.div
+            className="lg:hidden relative mx-auto mt-10 w-full max-w-[480px] aspect-[1/1]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.6, delay: 3.4, ease: EASE }}
+          >
+            {/* 雲＋ラベンダー（左下・背面） */}
+            <Image src="/cloud-decor.png" alt="" width={1200} height={520} className="absolute z-0 bottom-[4%] -left-[7%] w-[66%] h-auto" />
+            {/* 山と雲（右下・背面） */}
+            <Image src="/mountain-cloud.png" alt="" width={1200} height={520} className="absolute z-[1] bottom-0 -right-[13%] w-[84%] h-auto" />
+            {/* 看護師とお子さま（前面・右上） */}
+            <Image src="/hero-visual.png" alt="看護師とお子さま" width={1024} height={1024} className="absolute z-10 -top-[6%] right-[1%] w-[98%] h-auto" />
+          </motion.div>
+
+          {/* 3つの円バッジ（一時的に非表示：false && で無効化。戻すときは false を true に、または {false && ( )} の囲みを外す） */}
+          {false && (
           <motion.div
             className="mt-9 sm:mt-11 flex gap-3 sm:gap-6"
             initial={{ opacity: 0, y: 20 }}
@@ -155,6 +173,7 @@ export function HomeHero() {
               </div>
             ))}
           </motion.div>
+          )}
         </div>
       </div>
 
@@ -163,7 +182,7 @@ export function HomeHero() {
         className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.4, delay: 2.6, ease: EASE }}
+        transition={{ duration: 1.4, delay: 3.8, ease: EASE }}
       >
         <span
           className="w-px h-14 sm:h-16"
