@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "訪問看護を知る | 訪問看護ステーションミライズ",
   description:
     "訪問看護とは何か、ミライズの5つの特長、対象となる疾患・症状、ご利用までの流れをご紹介します。富山市・射水市・砺波市対応。",
+  alternates: { canonical: "/knowledge" },
 };
 
 /* ─── データ：5つの特徴（トップページと同じ） ─── */
@@ -151,7 +152,7 @@ function SectionHead({
       <p className="text-lg sm:text-2xl font-bold mb-4" style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#E576B8" }}>
         {label}
       </p>
-      <h2 className="text-[1.7rem] sm:text-[3rem] font-bold text-[#231F20] leading-[1.45] mb-8" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+      <h2 className="text-[1.3rem] sm:text-[3rem] font-bold text-[#231F20] leading-[1.45] mb-8" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
         {title}
       </h2>
     </>
@@ -184,7 +185,13 @@ export default function KnowledgePage() {
             </p>
             <div className="max-w-[680px]">
               <FadeIn direction="up" duration={2.0}>
-                <p className="text-lg sm:text-2xl font-bold mb-3" style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#E576B8" }}>
+                {/* 携帯：rainbow-road（「訪問看護を知る」の上・下が少し重なる） */}
+                <div aria-hidden className="lg:hidden relative z-0 -mr-[22%] -mb-16 -mt-20 pointer-events-none">
+                  <FadeIn direction="left" duration={2.0}>
+                    <Image src="/rainbow-road.png" alt="" width={1694} height={1527} priority className="w-[75%] h-auto ml-auto" />
+                  </FadeIn>
+                </div>
+                <p className="relative z-10 text-lg sm:text-2xl font-bold mb-3" style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#E576B8" }}>
                   訪問看護を知る
                 </p>
                 <h1
@@ -198,12 +205,6 @@ export default function KnowledgePage() {
                   <br />
                   途切れない訪問看護を。
                 </h1>
-                {/* 携帯：rainbow-road（右寄り・右ブリード・タイトルと少し重ねる／トップABOUTと同じ） */}
-                <div aria-hidden className="lg:hidden relative z-0 -mr-[22%] -mt-16 mb-8 pointer-events-none">
-                  <FadeIn direction="left" duration={2.0}>
-                    <Image src="/rainbow-road.png" alt="" width={1694} height={1527} priority className="w-[75%] h-auto ml-auto" />
-                  </FadeIn>
-                </div>
                 <p
                   className="mt-6 text-xl sm:text-2xl font-bold text-[#8a7fb5]"
                   style={{
@@ -270,7 +271,7 @@ export default function KnowledgePage() {
         <section id="about-nursing" className="relative z-10 overflow-hidden px-[5%] lg:pr-[17%] py-12 sm:py-20 scroll-mt-[110px]">
           <div className="max-w-[1000px] mx-auto">
             <FadeIn direction="up" duration={2.0}>
-              <SectionHead label="訪問看護って？" title={<>ご本人だけでなく、<br className="sm:hidden" />ご家族ごと。<br />医療とメンタルの両面から支えます。</>} />
+              <SectionHead label="訪問看護って？" title={<>医療とメンタルの両面から、<br />ご本人とご家族の毎日を支えます。</>} />
             </FadeIn>
             <FadeIn direction="up" delay={0.15} duration={2.0}>
               <div className="space-y-5 text-xs sm:text-base text-[#4a4a4a] leading-loose max-w-[760px] pr-[7%] lg:pr-0">

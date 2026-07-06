@@ -7,3 +7,28 @@
  * 例: export const LINE_URL = "https://lin.ee/xxxxxxx";
  */
 export const LINE_URL = "#";
+
+/**
+ * ★★★ 公開前に必ず実際の本番ドメインへ変更してください ★★★
+ * metadataBase / canonical / OGP / sitemap.xml / robots.txt / 構造化データ
+ * すべてこのURLを基準に生成されます。末尾スラッシュなし。
+ */
+export const SITE_URL = "https://mirise-houkan.com";
+
+export const SITE_NAME = "訪問看護ステーションミライズ";
+
+/** 事業所情報（構造化データ・SEOで共有） */
+export const BUSINESS = {
+  legalName: "合同会社ライフケアステーション富山",
+  name: "訪問看護ステーション ミライズ",
+  telephone: "076-461-3501",
+  faxNumber: "076-461-3502",
+  postalCode: "939-8071",
+  addressRegion: "富山県",
+  addressLocality: "富山市",
+  streetAddress: "上袋650 サンコレクトG.SECONDビル2階204号室",
+  founder: "庄司正樹",
+  foundingDate: "2024-12",
+  areaServed: ["富山市", "射水市", "砺波市", "滑川市", "魚津市", "黒部市"],
+  geo: { latitude: 36.6668, longitude: 137.2015 }, // ★目安。Googleマップの正確な座標に更新推奨
+} as const;

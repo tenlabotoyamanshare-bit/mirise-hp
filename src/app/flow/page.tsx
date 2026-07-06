@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   title: "ご利用までの流れ",
   description:
     "訪問看護ステーションミライズのご利用開始までの流れをご説明します。お問い合わせからサービス開始まで、スタッフが丁寧にご案内します。",
+  alternates: { canonical: "/flow" },
 };
 
 /* ─── このページのメインカラー（緑／ティールで統一） ─── */

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
     "訪問看護ステーションミライズへのお問い合わせ・ご相談はこちらから。ご利用のご相談・採用に関するお問い合わせを承っています。",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

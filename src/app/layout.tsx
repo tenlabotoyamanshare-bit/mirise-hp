@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Noto_Serif_JP, Zen_Maru_Gothic, Lora, Cormorant_Garamond 
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -40,19 +41,63 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const SITE_DESCRIPTION =
+  "富山市・射水市・砺波市対応の訪問看護ステーション ミライズ。児童・思春期から成人まで、精神・知的・発達障害に特化。ご本人とご家族を医療とメンタルの両面から支えます。24時間365日サポート。";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "訪問看護ステーションミライズ",
-    template: "%s | 訪問看護ステーションミライズ",
+    default: "訪問看護ステーションミライズ｜富山の精神・療育専門訪問看護",
+    template: "%s｜訪問看護ステーションミライズ（富山）",
   },
-  description:
-    "訪問看護ステーションミライズは、住み慣れたご自宅で安心して過ごせるよう、専門スタッフが心を込めてサポートします。24時間365日対応。",
-  keywords: ["訪問看護", "訪問看護ステーション", "在宅医療", "ミライズ"],
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "訪問看護",
+    "訪問看護ステーション",
+    "ミライズ",
+    "富山",
+    "富山市 訪問看護",
+    "富山 訪問看護ステーション",
+    "精神科訪問看護",
+    "児童 思春期 訪問看護",
+    "発達障害 訪問看護",
+    "在宅医療",
+    "療育",
+    "レスパイト",
+  ],
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  formatDetection: { telephone: true, address: true, email: true },
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    siteName: "訪問看護ステーションミライズ",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: "訪問看護ステーションミライズ｜富山の精神・療育専門訪問看護",
+    description: SITE_DESCRIPTION,
+    images: [{ url: "/logo.png", width: 512, height: 512, alt: SITE_NAME }],
   },
+  twitter: {
+    card: "summary",
+    title: "訪問看護ステーションミライズ｜富山",
+    description: SITE_DESCRIPTION,
+    images: ["/logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  // ★Google Search Console 登録後、確認コードを設定してください
+  // verification: { google: "xxxxxxxxxxxxxxxx" },
 };
 
 export default function RootLayout({

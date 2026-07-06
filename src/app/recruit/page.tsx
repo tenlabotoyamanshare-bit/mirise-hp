@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "採用情報 | 訪問看護ステーション ミライズ",
   description:
     "精神・療育に特化した訪問看護ステーション ミライズの採用情報。子どもから大人まで、利用者様の未来に寄り添う仲間を募集しています。",
+  alternates: { canonical: "/recruit" },
 };
 
 /* ─── 見出し共通カラー（H2/H3・項目見出し） ─── */

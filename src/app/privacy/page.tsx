@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
   description: "訪問看護ステーションミライズの個人情報の取り扱いについてご説明します。",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

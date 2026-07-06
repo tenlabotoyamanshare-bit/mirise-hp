@@ -3,12 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { FadeIn, StaggerContainer, StaggerItem, CharReveal, WavyUnderline } from "@/components/ui/fade-in";
 import { HomeHero } from "@/components/sections/HomeHero";
+import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { LINE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "訪問看護ステーションミライズ | 富山の精神・療育専門訪問看護",
   description:
     "富山市・射水市・砺波市対応。ご本人・ご家族・お子様の「自分らしい未来」を支える訪問看護ステーション。就労支援・精神的ケア・服薬管理・レスパイト対応。24時間365日サポート。",
+  alternates: { canonical: "/" },
 };
 
 /* ─── 共通：セクションラベル ─── */
@@ -219,6 +221,8 @@ function FeatureCard({
 export default function HomePage() {
   return (
     <div className="pt-[100px] overflow-x-clip" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F8F3FD 14%, #F1EBFB 60%, #D8C7F1 82%, #CBB8EA 100%)" }}>
+      {/* 構造化データ（ローカルSEO） */}
+      <LocalBusinessJsonLd />
       {/* ════════ HERO（FV） ════════ */}
       <HomeHero />
 

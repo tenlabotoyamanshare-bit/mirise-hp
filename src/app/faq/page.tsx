@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "よくあるご質問",
   description:
     "訪問看護ステーションミライズによくお寄せいただくご質問とその回答をまとめました。",
+  alternates: { canonical: "/faq" },
 };
 
 const MAIN = "#7B6BBE";

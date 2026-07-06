@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "ご利用料金",
   description:
     "訪問看護ステーションミライズのご利用料金をご案内します。医療保険・介護保険・自立支援医療・自費など各種保険に対応しています。",
+  alternates: { canonical: "/price" },
 };
 
 /* ─── このページのメインカラー（ブルー） ─── */
