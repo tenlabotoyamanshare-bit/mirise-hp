@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { PrivacyConsentDialog } from "@/components/recruit/PrivacyConsentDialog";
+import { WEB3FORMS_ACCESS_KEY } from "@/lib/site";
 
 const JOB_OPTIONS = [
   "看護師（正看護師・准看護師）",
@@ -53,18 +54,36 @@ export function ApplicationForm() {
     e.preventDefault();
     if (!isValid || status === "submitting") return;
 
+    if (!WEB3FORMS_ACCESS_KEY) {
+      setStatus("error");
+      setErrorMsg("送信先が未設定です。管理者にお問い合わせください。");
+      return;
+    }
+
     setStatus("submitting");
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/recruit/", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, jobType, agree }),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `【採用応募】${jobType}（${values.lastName} ${values.firstName} 様）`,
+          from_name: "ミライズ 採用応募フォーム",
+          replyto: values.email,
+          "応募職種": jobType,
+          "お名前": `${values.lastName} ${values.firstName}`,
+          "フリガナ": `${values.lastNameKana} ${values.firstNameKana}`,
+          "メールアドレス": values.email,
+          "電話番号": values.phone,
+          "ご住所": values.address || "（未入力）",
+          "個人情報の同意": agree ? "同意する" : "未同意",
+        }),
       });
       const json = await res.json();
-      if (!res.ok || !json.ok) {
-        throw new Error(json.error || "送信に失敗しました。");
+      if (!res.ok || !json.success) {
+        throw new Error(json.message || "送信に失敗しました。");
       }
       setStatus("success");
       setValues(initialState);

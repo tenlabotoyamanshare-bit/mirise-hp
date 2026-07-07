@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { WEB3FORMS_ACCESS_KEY } from "@/lib/site";
 
 const MAIN = "#3d9e8c";
 const TYPES = ["訪問看護のご利用について", "採用について", "その他"];
@@ -59,16 +60,38 @@ export function ContactForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!isValid || status === "submitting") return;
+    if (!WEB3FORMS_ACCESS_KEY) {
+      setStatus("error");
+      setErrorMsg("送信先が未設定です。管理者にお問い合わせください。");
+      return;
+    }
     setStatus("submitting");
     setErrorMsg("");
     try {
-      const res = await fetch("/api/contact/", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, type, userGender: gender, agree }),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `【お問い合わせ】${type}（${values.name} 様）`,
+          from_name: "ミライズ お問い合わせフォーム",
+          replyto: values.email,
+          "お問い合わせの種類": type,
+          "お名前": values.name,
+          "電話番号": values.phone,
+          "メールアドレス": values.email,
+          "ご住所": values.address || "（未入力）",
+          "お問い合わせ内容": values.message,
+          "利用者のお名前": values.userName,
+          "利用者の年齢": values.userAge,
+          "利用者の性別": gender,
+          "診断名または状況": values.userCondition,
+          "希望開始時期": values.desiredStart || "（未入力）",
+          "個人情報の同意": agree ? "同意する" : "未同意",
+        }),
       });
       const json = await res.json();
-      if (!res.ok || !json.ok) throw new Error(json.error || "送信に失敗しました。");
+      if (!res.ok || !json.success) throw new Error(json.message || "送信に失敗しました。");
       setStatus("success");
       setValues(initial);
       setGender("");
