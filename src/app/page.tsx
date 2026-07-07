@@ -535,7 +535,7 @@ export default function HomePage() {
                               対象エリア
                             </p>
                             <p className="text-xs sm:text-base font-bold text-[#3a3a3a] leading-relaxed">
-                              {["富山市", "射水市", "砺波市", "滑川市", "魚津市", "黒部市"].flatMap((c, i) =>
+                              {["富山市", "射水市", "砺波市", "滑川市", "魚津市", "黒部市", "南砺市"].flatMap((c, i) =>
                                 i > 0
                                   ? ["・", <span key={c} className="whitespace-nowrap">{c}</span>]
                                   : [<span key={c} className="whitespace-nowrap">{c}</span>]
