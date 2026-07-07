@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 
+// output: "export"（静的書き出し）で sitemap.xml を生成するために必要
+export const dynamic = "force-static";
+
 /** 公開ページ一覧（home-v1 / motif-preview などの検証用ページは除外） */
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
