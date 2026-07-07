@@ -20,7 +20,7 @@ export const LINE_URL = "#";
  * ※このキーはフロント（ブラウザ）に露出しますが、Web3Formsは公開前提のキー設計なので問題ありません。
  * ※送信先を変えたいときは、新しいメールでキーを取り直してここを差し替えるだけ。
  */
-export const WEB3FORMS_ACCESS_KEY = "";
+export const WEB3FORMS_ACCESS_KEY = "2088c3b4-4cf3-4d85-bf46-6f6889a84713";
 
 /**
  * ★★★ 公開前に必ず実際の本番ドメインへ変更してください ★★★
