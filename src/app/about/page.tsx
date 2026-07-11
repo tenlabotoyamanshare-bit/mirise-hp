@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { FadeIn } from "@/components/ui/fade-in";
 import { VisionSectionItem } from "@/components/sections/VisionSectionItem";
 import { AnimatedKeyMessage } from "@/components/ui/AnimatedKeyMessage";
@@ -205,15 +206,25 @@ export default function AboutPage() {
           {/* プロフィール */}
           <FadeIn direction="up" duration={1.6} delay={0.15}>
             <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 mb-16">
-              {/* 写真プレースホルダー */}
+              {/* 代表写真（今の色合いのグラデを右下にずらして影に／写真を前面に） */}
               <div className="flex-shrink-0 mx-auto sm:mx-0">
-                <div
-                  className="w-[180px] h-[220px] rounded-2xl flex items-center justify-center text-sm text-white/60 shadow-sm"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(236,153,208,0.5), rgba(179,174,219,0.5))",
-                  }}
-                >
-                  写真
+                <div className="relative w-[180px] h-[220px]">
+                  {/* 背面：グラデを少しずらして影のように */}
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(236,153,208,0.5), rgba(179,174,219,0.5))",
+                    }}
+                  />
+                  {/* 写真（前面） */}
+                  <Image
+                    src="/daihyo.jpg"
+                    alt="訪問看護ステーション ミライズ 代表 庄司正樹"
+                    width={360}
+                    height={440}
+                    className="relative w-[180px] h-[220px] rounded-2xl object-cover shadow-sm"
+                  />
                 </div>
               </div>
 
