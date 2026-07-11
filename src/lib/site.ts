@@ -6,7 +6,7 @@
  *
  * 例: export const LINE_URL = "https://lin.ee/xxxxxxx";
  */
-export const LINE_URL = "#";
+export const LINE_URL = "https://lin.ee/Oixemn1";
 
 /**
  * お問い合わせ・採用応募フォームの送信先（Web3Forms）。
@@ -27,7 +27,7 @@ export const WEB3FORMS_ACCESS_KEY = "4955c14d-a56e-4b20-b27b-59e3ee87e8f9";
  * metadataBase / canonical / OGP / sitemap.xml / robots.txt / 構造化データ
  * すべてこのURLを基準に生成されます。末尾スラッシュなし。
  */
-export const SITE_URL = "https://mirise-houkan.com";
+export const SITE_URL = "https://houkan-mirise.com";
 
 export const SITE_NAME = "訪問看護ステーションミライズ";
 
